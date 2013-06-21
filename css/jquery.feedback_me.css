@@ -1,0 +1,104 @@
+#feedback_trigger {
+	width: 40px;
+	height: 100px;
+	position: absolute;
+	left: 395px;
+	top: 100px;
+	cursor: pointer;
+	-webkit-border-top-left-radius: 0px;
+	-moz-border-top-left-radius: 0px;
+	border-top-left-radius: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	-moz-border-bottom-left-radius: 0px;
+	border-top-bottom-left-radius: 0px;
+}
+
+#feedback_content {
+	width: 380px;
+	height: 320px;
+	position: absolute;
+	top: 50px;
+}
+
+#feedback_content.email_present {
+	height: 380px;
+}
+
+.feedback_trigger_closed {
+	margin-left: -400px;
+}
+
+.feedback_content_closed {
+	margin-left: -400px;
+}
+
+#feedback_name {
+	display: block;
+	width: 340px;
+}
+
+#feedback_email {
+	display: block;
+	width: 340px;
+}
+
+#feedback_message {
+	display: block;
+	width: 340px;
+}
+
+#feedback_content ul li {
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.feedback_trigger_text { 
+	position: absolute;
+	right: -25px;
+	top: 40px;
+	letter-spacing: 2px;
+	font-size: 17px;
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3 );
+}
+
+#feedback_submit {
+	float: right;
+}
+
+.non_jquery_class {
+	background-color: #F2F2F2;
+}
+
+.non_jquery_class button{
+  	padding: 5px 10px;
+	display: inline;
+	background: #777;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	font-weight: bold;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	text-shadow: 1px 1px #666;
+}
+
+.non_jquery_class button:hover {
+	background-color: #9C9A9A;
+}
+
+#feedback_trigger.non_jquery_class {
+	left: 385px;
+}
+
+.non_jquery_class .feedback_trigger_text { 
+	right: -30px;
+}
+
+.non_jquery_class .feedback_title span {
+	margin-left: 10px;
+}
