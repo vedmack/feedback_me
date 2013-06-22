@@ -22,7 +22,7 @@ Usage:
 
 ```javascript
 $(document).ready(function(){
-  fm_options = {
+	fm_options = {
 		bootsrtap : true,
 		feedback_url : "send_feedback"
 	};
@@ -46,17 +46,17 @@ All available parameters :
 Default settings :
 
 ```javascript
-	var default_options = {
-		jQueryUI : false,
-		bootsrtap : false,
-		show_email : false,
-		name_label : "Name",
-		email_label : "Email",
-		message_label : "Message",
-		submit_label : "Send",
-		title_label : "Feedback",
-		trigger_label : "Feedback"
-	};
+var default_options = {
+	jQueryUI : false,
+	bootsrtap : false,
+	show_email : false,
+	name_label : "Name",
+	email_label : "Email",
+	message_label : "Message",
+	submit_label : "Send",
+	title_label : "Feedback",
+	trigger_label : "Feedback"
+};
 ```
 
 License
