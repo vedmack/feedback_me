@@ -1,5 +1,23 @@
 /*global $, jQuery*/
-
+/*
+*
+* jQuery Feedback Plugin
+* 
+* File:        jquery.dataTables.yadcf.js
+* Version:     0.1
+* Author:      Daniel Reznick
+* Info:        https://github.com/vedmack/feedback_me
+* Contact:     vedmack@gmail.com	
+* 
+* Copyright 2013 Daniel Reznick, all rights reserved.
+*
+* Copyright 2013 Licensed under the MIT License (just like jQuery itself)
+* 
+* This source file is distributed in the hope that it will be useful, but 
+* WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+* or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
+* 
+*/
 var fm = (function () {
 
 	'use strict';
