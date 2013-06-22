@@ -1,4 +1,4 @@
-#feedback_trigger {
+#feedback_trigger{
 	width: 40px;
 	height: 100px;
 	position: absolute;
@@ -101,4 +101,27 @@
 
 .non_jquery_class .feedback_title span {
 	margin-left: 10px;
+}
+.fm_bootstrap.hero-unit {
+	padding:0px;
+}
+
+.fm_bootstrap.hero-unit ul {
+	margin-left:15px;
+}
+
+.fm_bootstrap .feedback_title {
+	margin-bottom: 10px;
+}
+
+.fm_bootstrap .feedback_title span {
+	margin-left: 25px;
+}
+
+.fm_bootstrap .feedback_trigger_text { 
+	top: 35px;
+}
+
+#feedback_content.fm_bootstrap  {
+	width: 400px;
 }

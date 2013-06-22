@@ -47,13 +47,28 @@ var fm = (function () {
 			jQueryUIClasses4 = "",
 			email_html = "",
 			email_feedback_content_class = "",
-			non_jquery_class = "non_jquery_class";
+			non_jquery_class = "non_jquery_class",
+			bootstrap_class = "",
+			bootstrap_btn = "",
+			bootstrap_hero_unit = "";
+
+		if (fm_options.bootsrtap === true) {
+			non_jquery_class = "";
+			bootstrap_class = "fm_bootstrap";
+			bootstrap_btn = "btn btn-primary";
+			bootstrap_hero_unit = "hero-unit";
+		}
 
 		if (fm_options.jQueryUI === true) {
 			jQueryUIClasses1 = "ui-widget-header ui-corner-all ui-helper-clearfix";
 			jQueryUIClasses2 = "ui-dialog ui-widget ui-widget-content ui-corner-all";
 			jQueryUIClasses3 = "ui-dialog-titlebar";
 			jQueryUIClasses4 = "ui-dialog-title";
+
+			bootstrap_class = "";
+			bootstrap_hero_unit = "";
+			bootstrap_btn = "";
+
 			non_jquery_class = "";
 		}
 
@@ -62,12 +77,12 @@ var fm = (function () {
 			email_feedback_content_class = "email_present";
 		}
 
-		$('body').append('<div id="feedback_trigger" class="feedback_trigger_closed ' + jQueryUIClasses1 + non_jquery_class + '">'
+		$('body').append('<div id="feedback_trigger" class="feedback_trigger_closed ' + jQueryUIClasses1 + non_jquery_class + bootstrap_class + ' ' + bootstrap_hero_unit + '">'
 				+	'<span class="feedback_trigger_text">' + fm_options.trigger_label
 				+	'</span></div>');
 
-		$('body').append('<div id="feedback_content" class="feedback_content_closed ' + email_feedback_content_class + ' ' + jQueryUIClasses2 + non_jquery_class + '">'
-							+ '<div class="feedback_title' + jQueryUIClasses1 + ' ' + jQueryUIClasses3 + '">'
+		$('body').append('<div id="feedback_content" class="feedback_content_closed ' + email_feedback_content_class + ' ' + jQueryUIClasses2 + non_jquery_class + bootstrap_class + ' ' + bootstrap_hero_unit + '">'
+							+ '<div class="feedback_title ' + jQueryUIClasses1 + ' ' + jQueryUIClasses3 + '">'
 							+	'<span class="' + jQueryUIClasses4 + '">' + fm_options.title_label + '</span>'
 							+ '</div>'
 							+	'<ul>'
@@ -76,7 +91,7 @@ var fm = (function () {
 							+		 email_html
 
 							+		'<li>	<label for="feedback_message">' + fm_options.message_label + '</label> <textarea rows="5" id="feedback_message"></textarea> </li>'
-							+		'<li>	<button id="feedback_submit" onclick="fm.sendFeedback();">' + fm_options.submit_label + '</button> </li>'
+							+		'<li>	<button id="feedback_submit" onclick="fm.sendFeedback();" class="' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
 							+	'</ul>'
 						+ '</div>');
 
@@ -87,7 +102,7 @@ var fm = (function () {
 				}
 			});
 		}
-		
+
 		applyAnimation();
 	}
 
@@ -125,6 +140,7 @@ var fm = (function () {
 
 		var default_options = {
 			jQueryUI : true,
+			bootsrtap : false,
 			show_email : false,
 			name_label : "Name",
 			email_label : "Email",

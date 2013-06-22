@@ -102,3 +102,27 @@
 .non_jquery_class .feedback_title span {
 	margin-right: 20px;
 }
+
+.fm_bootstrap.hero-unit {
+	padding:0px;
+}
+
+.fm_bootstrap.hero-unit ul {
+	margin-right:45px;
+}
+
+.fm_bootstrap .feedback_title {
+	margin-bottom: 10px;
+}
+
+.fm_bootstrap .feedback_title span {
+	margin-right: 25px;
+}
+
+.fm_bootstrap .feedback_trigger_text { 
+	top: 35px;
+}
+
+#feedback_content.fm_bootstrap  {
+	width: 400px;
+}
