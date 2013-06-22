@@ -31,6 +31,7 @@ $(document).ready(function(){
 });
 ```
 
+All available parameters :
 
 * jQueryUI
 * bootsrtap
@@ -45,17 +46,17 @@ $(document).ready(function(){
 Default settings :
 
 ```javascript
-  	var default_options = {
-			jQueryUI : false,
-			bootsrtap : false,
-			show_email : false,
-			name_label : "Name",
-			email_label : "Email",
-			message_label : "Message",
-			submit_label : "Send",
-			title_label : "Feedback",
-			trigger_label : "Feedback"
-		};
+	var default_options = {
+		jQueryUI : false,
+		bootsrtap : false,
+		show_email : false,
+		name_label : "Name",
+		email_label : "Email",
+		message_label : "Message",
+		submit_label : "Send",
+		title_label : "Feedback",
+		trigger_label : "Feedback"
+	};
 ```
 
 License
