@@ -1,3 +1,13 @@
+#feedback_content, #feedback_content input, #feedback_content button {
+	font-size: 16px !important;
+	font-family: "Times New Roman" !important;
+}
+
+#feedback_content ul {
+	list-style: none;
+	padding-left: 11px;
+}
+
 #feedback_trigger{
 	width: 40px;
 	height: 100px;
