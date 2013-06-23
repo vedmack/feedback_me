@@ -39,7 +39,7 @@
 }
 
 .feedback_content_closed {
-	margin-left: -400px;
+	margin-left: -390px;
 }
 
 #feedback_name {
@@ -112,6 +112,11 @@
 .non_jquery_class .feedback_title span {
 	margin-left: 10px;
 }
+
+.non_jquery_class.feedback_content_closed {
+	margin-left: -400px;
+}
+
 .fm_bootstrap.hero-unit {
 	padding:0px;
 }
