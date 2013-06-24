@@ -14,6 +14,7 @@ Features:
   - Bootstrap support 
   - jQuery UI themes support
   - RTL support
+  - Uses ajax post to send data to server ('name', 'message' and 'email' parameters will be send to your servlet/php file etc...)
   - All labels are customizable
 
 
