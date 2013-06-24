@@ -107,7 +107,7 @@
 
 
 .fm_jquery.feedback_content_closed {
-	margin-left: -380px;
+	margin-left: -382px;
 }
 
 .fm_jquery .feedback_trigger_text { 
@@ -116,7 +116,6 @@
 
 .fm_jquery#feedback_content {
 	padding: 0px;
-	border: 0px;
 	height: 320px;
 }
 
