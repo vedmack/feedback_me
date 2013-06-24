@@ -16,11 +16,11 @@
 	left: 0;
 	cursor: pointer;
 	-webkit-border-top-left-radius: 0px;
-	-moz-border-top-left-radius: 0px;
+	-moz-border-radius-topleft: 0px;
 	border-top-left-radius: 0px;
 	-webkit-border-bottom-left-radius: 0px;
-	-moz-border-bottom-left-radius: 0px;
-	border-top-bottom-left-radius: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	border-bottom-left-radius: 0px;
 }
 
 #feedback_content {
@@ -116,11 +116,11 @@
 
 .fm_jquery#feedback_content {
 	padding: 0px;
-	height: 320px;
+	height: 330px;
 }
 
 .fm_jquery#feedback_content.email_present {
-	height: 380px;
+	height: 390px;
 }
 
 
