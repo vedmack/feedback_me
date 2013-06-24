@@ -158,5 +158,13 @@
 }
 
 .fm_bootstrap#feedback_content ul {
-	padding-left: 0px;
+	padding: 0px;
+}
+
+.fm_bootstrap#feedback_content {
+	height: 320px;
+}
+
+.fm_bootstrap#feedback_content.email_present {
+	height: 380px;
 }
