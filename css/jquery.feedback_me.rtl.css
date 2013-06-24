@@ -5,45 +5,39 @@
 
 #feedback_content ul {
 	list-style: none;
+	padding-right: 11px;
 }
 
-#feedback_content .feedback_title span {
-	float: right;
-	margin-right: 5px;
-}
-
-#feedback_trigger {
+#feedback_trigger{
 	width: 40px;
 	height: 100px;
 	position: absolute;
-	right: 395px;
 	top: 100px;
+	right: 0;
 	cursor: pointer;
 	-webkit-border-top-right-radius: 0px;
-	-moz-border-top-right-radius: 0px;
+	-moz-border-radius-topright: 0px;
 	border-top-right-radius: 0px;
 	-webkit-border-bottom-right-radius: 0px;
-	-moz-border-bottom-right-radius: 0px;
-	border-top-bottom-right-radius: 0px;
+	-moz-border-radius-bottomright: 0px;
+	border-bottom-right-radius: 0px;
 }
 
 #feedback_content {
 	width: 380px;
-	height: 320px;
+	height: 300px;
 	position: absolute;
 	top: 50px;
+	right: 0;
 }
 
 #feedback_content.email_present {
-	height: 380px;
+	height: 360px;
 }
 
-.feedback_trigger_closed {
-	margin-right: -400px;
-}
-
-.feedback_content_closed {
-	margin-right: -390px;
+#feedback_content ul li {
+	margin-left: 20px;
+	margin-bottom: 20px;
 }
 
 #feedback_name {
@@ -61,14 +55,12 @@
 	width: 340px;
 }
 
-#feedback_content ul li {
-	margin-right: -20px;
-	margin-bottom: 20px;
+#feedback_submit {
+	float: left;
 }
 
 .feedback_trigger_text { 
 	position: absolute;
-	left: -25px;
 	top: 40px;
 	letter-spacing: 2px;
 	font-size: 17px;
@@ -79,15 +71,11 @@
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3 );
 }
 
-#feedback_submit {
-	float: left;
-}
-
-.non_jquery_class {
+.fm_clean {
 	background-color: #F2F2F2;
 }
 
-.non_jquery_class button{
+.fm_clean button{
   	padding: 5px 10px;
 	display: inline;
 	background: #777;
@@ -101,24 +89,52 @@
 	text-shadow: 1px 1px #666;
 }
 
-.non_jquery_class button:hover {
+.fm_clean button:hover {
 	background-color: #9C9A9A;
 }
 
-#feedback_trigger.non_jquery_class {
-	right: 385px;
+.fm_clean .feedback_trigger_text { 
+	left: -20px;
 }
 
-.non_jquery_class .feedback_trigger_text { 
-	left: -30px;
+.fm_clean .feedback_title span {
+	margin-right: 10px;
 }
 
-.non_jquery_class .feedback_title span {
-	margin-right: 20px;
+.fm_clean.feedback_content_closed {
+	margin-right: -380px;
 }
 
-.non_jquery_class.feedback_content_closed {
-	margin-right: -400px;
+
+.fm_jquery.feedback_content_closed {
+	margin-right: -382px;
+}
+
+.fm_jquery .feedback_trigger_text { 
+	left: -20px;
+}
+
+.fm_jquery#feedback_content {
+	padding: 0px;
+	height: 330px;
+}
+
+.fm_jquery#feedback_content.email_present {
+	height: 390px;
+}
+
+
+.fm_jquery#feedback_trigger{
+	padding: 0px;
+	border: 0px;
+}
+
+.fm_bootstrap.feedback_content_closed {
+	margin-right: -380px;
+}
+
+.fm_bootstrap .feedback_trigger_text { 
+	left: -20px;
 }
 
 .fm_bootstrap.hero-unit {
@@ -126,7 +142,7 @@
 }
 
 .fm_bootstrap.hero-unit ul {
-	margin-right:45px;
+	margin-right:15px;
 }
 
 .fm_bootstrap .feedback_title {
@@ -134,13 +150,21 @@
 }
 
 .fm_bootstrap .feedback_title span {
-	margin-right: 25px;
+	margin-right: 15px;
 }
 
 .fm_bootstrap .feedback_trigger_text { 
 	top: 35px;
 }
 
-#feedback_content.fm_bootstrap  {
-	width: 400px;
+.fm_bootstrap#feedback_content ul {
+	padding: 0px;
+}
+
+.fm_bootstrap#feedback_content {
+	height: 320px;
+}
+
+.fm_bootstrap#feedback_content.email_present {
+	height: 380px;
 }
