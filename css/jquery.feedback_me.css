@@ -12,8 +12,8 @@
 	width: 40px;
 	height: 100px;
 	position: absolute;
-	left: 395px;
 	top: 100px;
+	left: 0;
 	cursor: pointer;
 	-webkit-border-top-left-radius: 0px;
 	-moz-border-top-left-radius: 0px;
@@ -25,21 +25,19 @@
 
 #feedback_content {
 	width: 380px;
-	height: 320px;
+	height: 300px;
 	position: absolute;
 	top: 50px;
+	left: 0;
 }
 
 #feedback_content.email_present {
-	height: 380px;
+	height: 360px;
 }
 
-.feedback_trigger_closed {
-	margin-left: -400px;
-}
-
-.feedback_content_closed {
-	margin-left: -390px;
+#feedback_content ul li {
+	margin-right: 20px;
+	margin-bottom: 20px;
 }
 
 #feedback_name {
@@ -57,14 +55,12 @@
 	width: 340px;
 }
 
-#feedback_content ul li {
-	margin-right: 20px;
-	margin-bottom: 20px;
+#feedback_submit {
+	float: right;
 }
 
 .feedback_trigger_text { 
 	position: absolute;
-	right: -25px;
 	top: 40px;
 	letter-spacing: 2px;
 	font-size: 17px;
@@ -75,15 +71,11 @@
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3 );
 }
 
-#feedback_submit {
-	float: right;
-}
-
-.non_jquery_class {
+.fm_clean {
 	background-color: #F2F2F2;
 }
 
-.non_jquery_class button{
+.fm_clean button{
   	padding: 5px 10px;
 	display: inline;
 	background: #777;
@@ -97,24 +89,45 @@
 	text-shadow: 1px 1px #666;
 }
 
-.non_jquery_class button:hover {
+.fm_clean button:hover {
 	background-color: #9C9A9A;
 }
 
-#feedback_trigger.non_jquery_class {
-	left: 385px;
+.fm_clean .feedback_trigger_text { 
+	right: -20px;
 }
 
-.non_jquery_class .feedback_trigger_text { 
-	right: -30px;
-}
-
-.non_jquery_class .feedback_title span {
+.fm_clean .feedback_title span {
 	margin-left: 10px;
 }
 
-.non_jquery_class.feedback_content_closed {
-	margin-left: -400px;
+.fm_clean.feedback_content_closed {
+	margin-left: -380px;
+}
+
+
+.fm_jquery.feedback_content_closed {
+	margin-left: -380px;
+}
+
+.fm_jquery .feedback_trigger_text { 
+	right: -20px;
+}
+
+.fm_jquery#feedback_content {
+	padding: 0px;
+	border: 0px;
+	height: 320px;
+}
+
+.fm_jquery#feedback_content.email_present {
+	height: 380px;
+}
+
+
+.fm_jquery#feedback_trigger{
+	padding: 0px;
+	border: 0px;
 }
 
 .fm_bootstrap.hero-unit {
@@ -137,6 +150,6 @@
 	top: 35px;
 }
 
-#feedback_content.fm_bootstrap  {
+.fm_bootstrap#feedback_content {
 	width: 400px;
 }
