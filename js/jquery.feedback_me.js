@@ -29,12 +29,12 @@ var fm = (function () {
 		var animation_show = {},
 			animation_hide = {};
 
-		animation_show.marginLeft = "+=390px";
-		animation_hide.marginLeft = "-=390px";
+		animation_show.marginLeft = "+=380px";
+		animation_hide.marginLeft = "-=380px";
 
 		if ($("body").attr("dir") === "rtl") {
-			animation_show.marginRight = "+=390px";
-			animation_hide.marginRight = "-=390px";
+			animation_show.marginRight = "+=380px";
+			animation_hide.marginRight = "-=380px";
 		}
 		$("#feedback_trigger").click(function (event) {
 			if ($("#feedback_trigger").hasClass("feedback_trigger_closed")) {
@@ -65,29 +65,33 @@ var fm = (function () {
 			jQueryUIClasses4 = "",
 			email_html = "",
 			email_feedback_content_class = "",
-			non_jquery_class = "non_jquery_class",
+			fm_class = " fm_clean ",
+			jquery_class = "",
 			bootstrap_class = "",
 			bootstrap_btn = "",
 			bootstrap_hero_unit = "";
 
 		if (fm_options.bootsrtap === true) {
-			non_jquery_class = "";
-			bootstrap_class = "fm_bootstrap";
-			bootstrap_btn = "btn btn-primary";
-			bootstrap_hero_unit = "hero-unit";
+			bootstrap_class = " fm_bootstrap ";
+			bootstrap_btn = " btn btn-primary ";
+			bootstrap_hero_unit = " hero-unit ";
+
+			fm_class = "";
+			jquery_class = "";
 		}
 
 		if (fm_options.jQueryUI === true) {
-			jQueryUIClasses1 = "ui-widget-header ui-corner-all ui-helper-clearfix";
-			jQueryUIClasses2 = "ui-dialog ui-widget ui-widget-content ui-corner-all";
-			jQueryUIClasses3 = "ui-dialog-titlebar";
-			jQueryUIClasses4 = "ui-dialog-title";
+			jquery_class = " fm_jquery ";
+			jQueryUIClasses1 = " ui-widget-header ui-corner-all ui-helper-clearfix ";
+			jQueryUIClasses2 = " ui-dialog ui-widget ui-widget-content ui-corner-all ";
+			jQueryUIClasses3 = " ui-dialog-titlebar ";
+			jQueryUIClasses4 = " ui-dialog-title ";
 
+			fm_class = "";
 			bootstrap_class = "";
 			bootstrap_hero_unit = "";
 			bootstrap_btn = "";
 
-			non_jquery_class = "";
 		}
 
 		if (fm_options.show_email === true) {
@@ -95,12 +99,12 @@ var fm = (function () {
 			email_feedback_content_class = "email_present";
 		}
 
-		$('body').append('<div id="feedback_trigger" class="feedback_trigger_closed ' + jQueryUIClasses1 + non_jquery_class + bootstrap_class + ' ' + bootstrap_hero_unit + '">'
+		$('body').append('<div id="feedback_trigger" class="feedback_trigger_closed ' + jQueryUIClasses1 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
 				+	'<span class="feedback_trigger_text">' + fm_options.trigger_label
 				+	'</span></div>');
 
-		$('body').append('<div id="feedback_content" class="feedback_content_closed ' + email_feedback_content_class + ' ' + jQueryUIClasses2 + non_jquery_class + bootstrap_class + ' ' + bootstrap_hero_unit + '">'
-							+ '<div class="feedback_title ' + jQueryUIClasses1 + ' ' + jQueryUIClasses3 + '">'
+		$('body').append('<div id="feedback_content" class="feedback_content_closed ' + email_feedback_content_class + jQueryUIClasses2 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
+							+ '<div class="feedback_title ' + jQueryUIClasses1 + jQueryUIClasses3 + '">'
 							+	'<span class="' + jQueryUIClasses4 + '">' + fm_options.title_label + '</span>'
 							+ '</div>'
 							+	'<ul>'
@@ -132,7 +136,7 @@ var fm = (function () {
 			success: function (data) {
 				var animation_hide = {};
 
-				animation_hide.marginLeft = "-=390px";
+				animation_hide.marginLeft = "-=380px";
 				$("#feedback_trigger , #feedback_content").animate(
 					animation_hide,
 					500,
