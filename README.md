@@ -59,6 +59,13 @@ var default_options = {
 };
 ```
 
+Example:
+=====
+
+
+[jQuery UI theme aware example](https://dl.dropboxusercontent.com/u/55621125/feedback_me/jqueryUI_example.htm)
+
+
 License
 =====
 
