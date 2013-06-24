@@ -161,7 +161,7 @@ var fm = (function () {
 	function init(options) {
 
 		var default_options = {
-			jQueryUI : true,
+			jQueryUI : false,
 			bootsrtap : false,
 			show_email : false,
 			name_label : "Name",
