@@ -62,8 +62,9 @@ var default_options = {
 Example:
 =====
 
+[example](https://dl.dropboxusercontent.com/u/55621125/feedback_me/example.html)
 
-[jQuery UI theme aware example](https://dl.dropboxusercontent.com/u/55621125/feedback_me/jqueryUI_example.htm)
+[jQuery UI theme aware example](https://dl.dropboxusercontent.com/u/55621125/feedback_me/example_jqueryUI.html)
 
 
 License
