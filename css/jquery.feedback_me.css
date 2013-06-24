@@ -129,6 +129,14 @@
 	border: 0px;
 }
 
+.fm_bootstrap.feedback_content_closed {
+	margin-left: -380px;
+}
+
+.fm_bootstrap .feedback_trigger_text { 
+	right: -20px;
+}
+
 .fm_bootstrap.hero-unit {
 	padding:0px;
 }
@@ -142,13 +150,13 @@
 }
 
 .fm_bootstrap .feedback_title span {
-	margin-left: 25px;
+	margin-left: 15px;
 }
 
 .fm_bootstrap .feedback_trigger_text { 
 	top: 35px;
 }
 
-.fm_bootstrap#feedback_content {
-	width: 400px;
+.fm_bootstrap#feedback_content ul {
+	padding-left: 0px;
 }
