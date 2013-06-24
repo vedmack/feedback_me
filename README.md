@@ -66,6 +66,8 @@ Example:
 
 [jQuery UI theme aware example](https://dl.dropboxusercontent.com/u/55621125/feedback_me/example_jqueryUI.html)
 
+[bootstrap example](https://dl.dropboxusercontent.com/u/55621125/feedback_me/example_bootstrap.html)
+
 
 License
 =====
