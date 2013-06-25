@@ -59,7 +59,8 @@
 	float: right;
 }
 
-.feedback_trigger_text { 
+.feedback_trigger_text {
+	white-space: nowrap;
 	position: absolute;
 	top: 40px;
 	letter-spacing: 2px;
