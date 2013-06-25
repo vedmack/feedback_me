@@ -24,7 +24,8 @@ Usage:
 ```javascript
 $(document).ready(function(){
 	fm_options = {
-		bootsrtap : true,
+		trigger_label : "Click me",
+		jQueryUI : true,
 		feedback_url : "send_feedback"
 	};
 
