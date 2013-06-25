@@ -61,7 +61,7 @@ var default_options = {
 };
 ```
 
-Example:
+Examples:
 =====
 
 [example](https://dl.dropboxusercontent.com/u/55621125/feedback_me/example.html)
