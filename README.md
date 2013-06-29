@@ -65,11 +65,11 @@ var default_options = {
 Examples:
 =====
 
-[example](http://jsbin.com/eroxed/4/)
+[example](http://jsbin.com/eroxed/6/)
 
 [jQuery UI theme aware example](https://dl.dropboxusercontent.com/u/55621125/feedback_me/example_jqueryUI.html)
 
-[bootstrap example](http://jsbin.com/eroxed/5/)
+[bootstrap example](http://jsbin.com/eroxed/7/)
 
 
 License
