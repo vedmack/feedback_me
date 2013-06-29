@@ -3,7 +3,7 @@
 *
 * jQuery Feedback Plugin
 * 
-* File:        jquery.dataTables.yadcf.js
+* File:        jquery.feedback_me.js
 * Version:     0.1
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me
