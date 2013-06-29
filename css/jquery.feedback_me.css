@@ -59,7 +59,7 @@
 	float: right;
 }
 
-.feedback_trigger_text {
+.feedback_trigger_text { 
 	white-space: nowrap;
 	position: absolute;
 	top: 40px;
@@ -74,6 +74,10 @@
 
 .fm_clean {
 	background-color: #F2F2F2;
+}
+
+.fm_clean#feedback_trigger:hover{
+	background-color: #CCCCCC;
 }
 
 .fm_clean button{
@@ -135,7 +139,7 @@
 }
 
 .fm_bootstrap .feedback_trigger_text { 
-	right: -20px;
+	right: -25px;
 }
 
 .fm_bootstrap.hero-unit {
@@ -168,4 +172,8 @@
 
 .fm_bootstrap#feedback_content.email_present {
 	height: 380px;
+}
+
+.fm_bootstrap#feedback_trigger:hover{
+	background-color: #CCCCCC;
 }

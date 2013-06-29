@@ -76,6 +76,10 @@
 	background-color: #F2F2F2;
 }
 
+.fm_clean#feedback_trigger:hover{
+	background-color: #CCCCCC;
+}
+
 .fm_clean button{
   	padding: 5px 10px;
 	display: inline;
@@ -135,7 +139,7 @@
 }
 
 .fm_bootstrap .feedback_trigger_text { 
-	left: -20px;
+	left: -25px;
 }
 
 .fm_bootstrap.hero-unit {
@@ -168,4 +172,8 @@
 
 .fm_bootstrap#feedback_content.email_present {
 	height: 380px;
+}
+
+.fm_bootstrap#feedback_trigger:hover{
+	background-color: #CCCCCC;
 }
