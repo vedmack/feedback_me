@@ -64,11 +64,11 @@ var default_options = {
 Examples:
 =====
 
-[example](https://dl.dropboxusercontent.com/u/55621125/feedback_me/example.html)
+[example](http://jsbin.com/eroxed/3/)
 
 [jQuery UI theme aware example](https://dl.dropboxusercontent.com/u/55621125/feedback_me/example_jqueryUI.html)
 
-[bootstrap example](https://dl.dropboxusercontent.com/u/55621125/feedback_me/example_bootstrap.html)
+[bootstrap example](http://jsbin.com/eroxed/2/)
 
 
 License
