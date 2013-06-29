@@ -149,7 +149,7 @@ var fm = (function () {
 				);
 			},
 			error: function (ob, errStr) {
-				alert("Failed to send feedback...");
+				alert("Failed to send feedback (please double check your feedback_url parameter)...");
 			}
 		});
 	}
