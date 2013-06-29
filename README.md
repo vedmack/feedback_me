@@ -33,8 +33,9 @@ $(document).ready(function(){
 });
 ```
 
-All available parameters :
+All available parameters (detailed explanation inside jquery.feedback_me.js)
 
+* feedback_url
 * jQueryUI
 * bootsrtap
 * show_email
@@ -64,11 +65,11 @@ var default_options = {
 Examples:
 =====
 
-[example](http://jsbin.com/eroxed/3/)
+[example](http://jsbin.com/eroxed/4/)
 
 [jQuery UI theme aware example](https://dl.dropboxusercontent.com/u/55621125/feedback_me/example_jqueryUI.html)
 
-[bootstrap example](http://jsbin.com/eroxed/2/)
+[bootstrap example](http://jsbin.com/eroxed/5/)
 
 
 License
