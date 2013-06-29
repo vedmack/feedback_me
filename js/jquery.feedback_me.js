@@ -17,6 +17,68 @@
 * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
 * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
 * 
+* Parameters:
+*
+*					
+* -------------
+
+* feedback_url
+				Required:			true
+				Type:				String
+				Description:		URL of your servlet/php etc ('name', 'message' and 'email' parameters will be send to your servlet/php etc...)
+				
+* jQueryUI
+				Required:			false
+				Type:				boolean
+				Description:		Tell the plugin to use jQuery UI theme
+					
+* bootsrtap
+				Required:			false
+				Type:				boolean
+				Description:		Tell the plugin to use twitter bootstrap
+
+* show_email
+				Required:			false
+				Type:				boolean
+				Description:		Tell the plugin to display email input field
+										
+* name_label
+				Required:			false
+				Type:				String
+				Default value:		"Name"
+				Description:		Label for name input
+
+* email_label
+				Required:			false
+				Type:				String
+				Default value:		"Email"
+				Description:		Label for email input
+		
+* message_label
+				Required:			false
+				Type:				String
+				Default value:		"Message"
+				Description:		Label for message input
+									
+* submit_label
+				Required:			false
+				Type:				String
+				Default value:		"Send"
+				Description:		Label for submit input
+
+* title_label
+				Required:			false
+				Type:				String
+				Default value:		"Feedback"
+				Description:		Label for title text
+		
+* trigger_label
+				Required:			false
+				Type:				String
+				Default value:		"Feedback"
+				Description:		Label for open/close (trigger) button
+*
+*
 */
 var fm = (function () {
 
@@ -149,7 +211,7 @@ var fm = (function () {
 				);
 			},
 			error: function (ob, errStr) {
-				alert("Failed to send feedback (please double check your feedback_url parameter)...");
+				alert("Failed to send feedback (please double check your feedback_url parameter)");
 			}
 		});
 	}
