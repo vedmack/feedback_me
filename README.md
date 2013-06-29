@@ -33,8 +33,9 @@ $(document).ready(function(){
 });
 ```
 
-All available parameters :
+All available parameters (detailed explanation inside jquery.feedback_me.js)
 
+* feedback_url
 * jQueryUI
 * bootsrtap
 * show_email
