@@ -195,7 +195,7 @@ var fm = (function () {
 			type: 'POST',
 			url: fm.getFmOptions().feedback_url,
 			data: { name: $("#feedback_name").val(), message: $("#feedback_message").val(), email: $("#feedback_email").val() },
-			success: function (data) {
+			beforeSend: function (xhr) {
 				var animation_hide = {};
 
 				animation_hide.marginLeft = "-=380px";
