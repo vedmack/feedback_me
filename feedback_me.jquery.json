@@ -1,0 +1,35 @@
+{
+  "name": "feedback_me",
+  "title": "jQuery Feedback Plugin",
+  "description": "This jQuery plug-in allows the user to easily add animatable feedback dialog that slides from the side of the screen.",
+  "keywords": [
+    "jquery",
+    "feedback",
+    "plugin"
+  ],
+  "version": "0.0.1",
+  "author": {
+    "name": "Daniel Reznick",
+    "url": "https://github.com/vedmack/feedback_me"
+  },
+  "maintainers": [
+    {
+      "name": "Daniel Reznick",
+      "url": "https://github.com/vedmack"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "bugs": "https://github.com/vedmack/feedback_me/issues",
+  "homepage": "https://github.com/vedmack/feedback_me",
+  "docs": "https://github.com/vedmack/feedback_me/blob/master/README.md",
+  "download": "https://github.com/vedmack/feedback_me/archive/master.zip",
+  "dependencies": {
+    "jquery": ">=1.4",
+	"jqueryui": ">=1.7"
+  }
+}
