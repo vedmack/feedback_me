@@ -37,7 +37,7 @@ All available parameters (detailed explanation inside jquery.feedback_me.js)
 
 * feedback_url
 * jQueryUI
-* bootsrtap
+* bootstrap
 * show_email
 * name_label
 * email_label
@@ -51,7 +51,7 @@ Default settings :
 ```javascript
 var default_options = {
 	jQueryUI : false,
-	bootsrtap : false,
+	bootstrap : false,
 	show_email : false,
 	name_label : "Name",
 	email_label : "Email",

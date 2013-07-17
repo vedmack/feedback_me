@@ -32,7 +32,7 @@
 				Type:				boolean
 				Description:		Tell the plugin to use jQuery UI theme
 					
-* bootsrtap
+* bootstrap
 				Required:			false
 				Type:				boolean
 				Description:		Tell the plugin to use twitter bootstrap
@@ -133,7 +133,7 @@ var fm = (function () {
 			bootstrap_btn = "",
 			bootstrap_hero_unit = "";
 
-		if (fm_options.bootsrtap === true) {
+		if (fm_options.bootstrap === true) {
 			bootstrap_class = " fm_bootstrap ";
 			bootstrap_btn = " btn btn-primary ";
 			bootstrap_hero_unit = " hero-unit ";
@@ -224,7 +224,7 @@ var fm = (function () {
 
 		var default_options = {
 			jQueryUI : false,
-			bootsrtap : false,
+			bootstrap : false,
 			show_email : false,
 			name_label : "Name",
 			email_label : "Email",
