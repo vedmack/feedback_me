@@ -4,7 +4,7 @@ jQuery Feedback Plugin
 Description:
 =====
 
-This jQuery plug-in allows the user to easily add animatable feedback dialog that slides from the side of the screen.
+This jQuery plug-in allows user to easily add an animatable UI widget with a feedback form which slides from the side of the screen.
 If you are using this plugin it would be nice if you drop me an email to vedmack@gmail.com with some feedback.
 
 
