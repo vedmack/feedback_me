@@ -7,17 +7,11 @@
     "feedback",
     "plugin"
   ],
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Daniel Reznick",
-    "url": "https://github.com/vedmack/feedback_me"
+    "url": "https://github.com/vedmack"
   },
-  "maintainers": [
-    {
-      "name": "Daniel Reznick",
-      "url": "https://github.com/vedmack"
-    }
-  ],
   "licenses": [
     {
       "type": "MIT",

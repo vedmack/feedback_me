@@ -4,7 +4,7 @@
 * jQuery Feedback Plugin
 * 
 * File:        jquery.feedback_me.js
-* Version:     0.1
+* Version:     0.2.0
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me
 * Contact:     vedmack@gmail.com	
@@ -77,6 +77,11 @@
 				Type:				String
 				Default value:		"Feedback"
 				Description:		Label for open/close (trigger) button
+				
+* close_on_click_outisde				
+				Required:			false
+				Type:				boolean
+				Description:		Will cause the feedback dialog to be closed on clicking anywhere outside the dialog
 *
 *
 */
@@ -86,7 +91,7 @@ var fm = (function () {
 
 	var fm_options;
 
-	function applyAnimation() {
+	function triggerAction(event) {
 
 		var animation_show = {},
 			animation_hide = {};
@@ -98,26 +103,59 @@ var fm = (function () {
 			animation_show.marginRight = "+=380px";
 			animation_hide.marginRight = "-=380px";
 		}
-		$("#feedback_trigger").click(function (event) {
-			if ($("#feedback_trigger").hasClass("feedback_trigger_closed")) {
-				$("#feedback_trigger , #feedback_content").animate(
-					animation_show,
-					500,
-					'easeInOutSine',
-					function () {
-						$("#feedback_trigger").removeClass("feedback_trigger_closed");
-					}
-				);
-			} else {
-				$("#feedback_trigger , #feedback_content").animate(
-					animation_hide,
-					500,
-					function () {
-						$("#feedback_trigger").addClass("feedback_trigger_closed");
-					}
-				);
+
+		if ($("#feedback_trigger").hasClass("feedback_trigger_closed")) {
+			$("#feedback_trigger , #feedback_content").animate(
+				animation_show,
+				500,
+				'easeInOutSine',
+				function () {
+					$("#feedback_trigger").removeClass("feedback_trigger_closed");
+					$("#feedback_content").removeClass("feedback_content_closed");
+				}
+			);
+		} else {
+			$("#feedback_trigger , #feedback_content").animate(
+				animation_hide,
+				500,
+				function () {
+					$("#feedback_trigger").addClass("feedback_trigger_closed");
+					$("#feedback_content").addClass("feedback_content_closed");
+				}
+			);
+		}
+
+	}
+
+	function closeFeedback(event) {
+
+		if ($("#feedback_content").hasClass("feedback_content_closed") || event.target.id === "feedback_content" || $(event.target).parents("div#feedback_content").length > 0) {
+			return;
+		}
+
+		var animation_hide = {};
+
+		animation_hide.marginLeft = "-=380px";
+		$("#feedback_trigger , #feedback_content").animate(
+			animation_hide,
+			500,
+			function () {
+				$("#feedback_trigger").addClass("feedback_trigger_closed");
+				$("#feedback_content").addClass("feedback_content_closed");
 			}
-		});
+		);
+	}
+
+	function applyCloseOnClickOutside() {
+		if (parseFloat($().jquery) >= 1.7) {
+			$(document).on("click", document, function (event) {
+				closeFeedback(event);
+			});
+		} else {
+			$(document).delegate("body", document, function (event) {
+				closeFeedback(event);
+			});
+		}
 	}
 
 	function appendFeedbackToBody(fm_options) {
@@ -161,7 +199,7 @@ var fm = (function () {
 			email_feedback_content_class = "email_present";
 		}
 
-		$('body').append('<div id="feedback_trigger" class="feedback_trigger_closed ' + jQueryUIClasses1 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
+		$('body').append('<div id="feedback_trigger" onclick="event.cancelBubble = true;event.stopPropagation();fm.triggerAction(event);" class="feedback_trigger_closed ' + jQueryUIClasses1 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
 				+	'<span class="feedback_trigger_text">' + fm_options.trigger_label
 				+	'</span></div>');
 
@@ -187,7 +225,10 @@ var fm = (function () {
 			});
 		}
 
-		applyAnimation();
+		if (fm_options.close_on_click_outisde === true) {
+			applyCloseOnClickOutside();
+		}
+
 	}
 
 	function sendFeedback() {
@@ -226,6 +267,7 @@ var fm = (function () {
 			jQueryUI : false,
 			bootstrap : false,
 			show_email : false,
+			close_on_click_outisde: false,
 			name_label : "Name",
 			email_label : "Email",
 			message_label : "Message",
@@ -242,7 +284,8 @@ var fm = (function () {
     return {
 		init : init,
 		sendFeedback : sendFeedback,
-		getFmOptions : getFmOptions
+		getFmOptions : getFmOptions,
+		triggerAction : triggerAction
     };
 
 }());

@@ -18,6 +18,16 @@ Features:
   - All labels are customizable
 
 
+Examples:
+=====
+
+[example](http://feedback-me.appspot.com/example_clean.html)
+
+[jQuery UI theme aware example](http://feedback-me.appspot.com/example_jqueryUI.html)
+
+[bootstrap example](http://feedback-me.appspot.com/example_bootstrap.html)
+
+
 Usage:
 =====
 
@@ -25,6 +35,7 @@ Usage:
 $(document).ready(function(){
 	fm_options = {
 		trigger_label : "Click me",
+		close_on_click_outisde: true,
 		jQueryUI : true,
 		feedback_url : "send_feedback"
 	};
@@ -39,6 +50,7 @@ All available parameters (detailed explanation inside jquery.feedback_me.js)
 * jQueryUI
 * bootstrap
 * show_email
+* close_on_click_outisde
 * name_label
 * email_label
 * message_label
@@ -53,6 +65,7 @@ var default_options = {
 	jQueryUI : false,
 	bootstrap : false,
 	show_email : false,
+	close_on_click_outisde: false,
 	name_label : "Name",
 	email_label : "Email",
 	message_label : "Message",
@@ -61,16 +74,6 @@ var default_options = {
 	trigger_label : "Feedback"
 };
 ```
-
-Examples:
-=====
-
-[example](http://feedback-me.appspot.com/example_clean.html)
-
-[jQuery UI theme aware example](http://feedback-me.appspot.com/example_jqueryUI.html)
-
-[bootstrap example](http://feedback-me.appspot.com/example_bootstrap.html)
-
 
 License
 =====
