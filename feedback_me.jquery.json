@@ -1,7 +1,7 @@
 {
   "name": "feedback_me",
   "title": "jQuery Feedback Plugin",
-  "description": "This jQuery plug-in allows the user to easily add animatable feedback dialog that slides from the side of the screen.",
+  "description": "This jQuery plug-in allows user to easily add an animatable UI widget with a feedback form which slides from the side of the screen.",
   "keywords": [
     "jquery",
     "feedback",
