@@ -21,7 +21,7 @@ Features:
 Examples:
 =====
 
-[example](http://feedback-me.appspot.com/example_clean.html)
+[clean example](http://feedback-me.appspot.com/example_clean.html)
 
 [jQuery UI theme aware example](http://feedback-me.appspot.com/example_jqueryUI.html)
 
