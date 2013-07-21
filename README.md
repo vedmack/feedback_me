@@ -65,7 +65,7 @@ var default_options = {
 	jQueryUI : false,
 	bootstrap : false,
 	show_email : false,
-	close_on_click_outisde: false,
+	close_on_click_outisde: true,
 	name_label : "Name",
 	email_label : "Email",
 	message_label : "Message",
