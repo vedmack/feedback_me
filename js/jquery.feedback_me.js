@@ -4,7 +4,7 @@
 * jQuery Feedback Plugin
 * 
 * File:        jquery.feedback_me.js
-* Version:     0.2.0
+* Version:     0.2.1
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me
 * Contact:     vedmack@gmail.com	
@@ -30,16 +30,19 @@
 * jQueryUI
 				Required:			false
 				Type:				boolean
+				Default value:		false
 				Description:		Tell the plugin to use jQuery UI theme
 					
 * bootstrap
 				Required:			false
 				Type:				boolean
+				Default value:		false
 				Description:		Tell the plugin to use twitter bootstrap
 
 * show_email
 				Required:			false
 				Type:				boolean
+				Default value:		false
 				Description:		Tell the plugin to display email input field
 										
 * name_label
@@ -81,6 +84,7 @@
 * close_on_click_outisde				
 				Required:			false
 				Type:				boolean
+				Default value:		true
 				Description:		Will cause the feedback dialog to be closed on clicking anywhere outside the dialog
 *
 *
@@ -134,15 +138,17 @@ var fm = (function () {
 		}
 
 		var animation_hide = {};
-
 		animation_hide.marginLeft = "-=380px";
+		if ($("body").attr("dir") === "rtl") {
+			animation_hide.marginRight = "-=380px";
+		}
+
+		$("#feedback_trigger").addClass("feedback_trigger_closed");
+		$("#feedback_content").addClass("feedback_content_closed");
+
 		$("#feedback_trigger , #feedback_content").animate(
 			animation_hide,
-			500,
-			function () {
-				$("#feedback_trigger").addClass("feedback_trigger_closed");
-				$("#feedback_content").addClass("feedback_content_closed");
-			}
+			500
 		);
 	}
 
@@ -237,9 +243,13 @@ var fm = (function () {
 			url: fm.getFmOptions().feedback_url,
 			data: { name: $("#feedback_name").val(), message: $("#feedback_message").val(), email: $("#feedback_email").val() },
 			beforeSend: function (xhr) {
-				var animation_hide = {};
 
+				var animation_hide = {};
 				animation_hide.marginLeft = "-=380px";
+				if ($("body").attr("dir") === "rtl") {
+					animation_hide.marginRight = "-=380px";
+				}
+
 				$("#feedback_trigger , #feedback_content").animate(
 					animation_hide,
 					500,
@@ -267,7 +277,7 @@ var fm = (function () {
 			jQueryUI : false,
 			bootstrap : false,
 			show_email : false,
-			close_on_click_outisde: false,
+			close_on_click_outisde: true,
 			name_label : "Name",
 			email_label : "Email",
 			message_label : "Message",
