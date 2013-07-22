@@ -35,7 +35,6 @@ Usage:
 $(document).ready(function(){
 	fm_options = {
 		trigger_label : "Click me",
-		close_on_click_outisde: true,
 		jQueryUI : true,
 		feedback_url : "send_feedback"
 	};
