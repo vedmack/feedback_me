@@ -1,6 +1,6 @@
-#feedback_content, #feedback_content input, #feedback_content button {
-	font-size: 16px !important;
-	font-family: "Times New Roman" !important;
+#feedback_content, #feedback_trigger {
+	font-size: 16px;
+	font-family: 'Helvetica Neue', Helvetica, Tahoma, Arial, sans-serif;
 }
 
 #feedback_content ul {
@@ -100,6 +100,10 @@
 
 .fm_clean .feedback_trigger_text { 
 	left: -20px;
+}
+
+.fm_clean .feedback_title {
+	padding-top: 5px;	
 }
 
 .fm_clean .feedback_title span {
