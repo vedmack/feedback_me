@@ -1,4 +1,4 @@
-jQuery Feedback Plugin
+jQuery Feedback Me Plugin
 ===========
 
 Description:
