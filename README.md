@@ -5,7 +5,7 @@ Description:
 =====
 
 This jQuery plug-in allows user to easily add an animatable UI widget with a feedback form which slides from the side of the screen.
-If you are using this plugin it would be nice if you drop me an email to vedmack@gmail.com with some feedback.
+I got list of new features and styles to add to make it more powerfull and better looking, so stay tuned for new stuff...
 
 
 Features:
@@ -81,5 +81,7 @@ Copyright 2013
 Licensed under the MIT License (just like jQuery itself)
 
 
+
+If you are using this plugin it would be nice if you drop me an email to vedmack@gmail.com with some feedback.
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/b6da00ccf307b6c278c41ba942e9af7c "githalytics.com")](http://githalytics.com/vedmack/feedback_me)
