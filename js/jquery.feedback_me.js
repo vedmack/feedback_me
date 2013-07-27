@@ -4,7 +4,7 @@
 * jQuery Feedback Plugin
 * 
 * File:        jquery.feedback_me.js
-* Version:     0.2.1
+* Version:     0.2.5
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me
 * Contact:     vedmack@gmail.com	
@@ -80,7 +80,25 @@
 				Type:				String
 				Default value:		"Feedback"
 				Description:		Label for open/close (trigger) button
-				
+		
+* name_placeholder
+				Required:			false
+				Type:				String
+				Default value:		""
+				Description:		Watermark for name input
+
+* email_placeholder
+				Required:			false
+				Type:				String
+				Default value:		""
+				Description:		Watermark for email input
+		
+* message_placeholder
+				Required:			false
+				Type:				String
+				Default value:		""
+				Description:		Watermark for message input
+
 * close_on_click_outisde				
 				Required:			false
 				Type:				boolean
@@ -201,7 +219,7 @@ var fm = (function () {
 		}
 
 		if (fm_options.show_email === true) {
-			email_html = '<li>	<label for="feedback_email">' + fm_options.email_label + '</label> <input type="text" id="feedback_email"></input> </li>';
+			email_html = '<li>	<label for="feedback_email">' + fm_options.email_label + '</label> <input type="text" id="feedback_email" placeholder="' + fm_options.email_placeholder + '"></input> </li>';
 			email_feedback_content_class = "email_present";
 		}
 
@@ -214,11 +232,11 @@ var fm = (function () {
 							+	'<span class="' + jQueryUIClasses4 + '">' + fm_options.title_label + '</span>'
 							+ '</div>'
 							+	'<ul>'
-							+		'<li>	<label for="feedback_name">' + fm_options.name_label + '</label> <input type="text" id="feedback_name"></input> </li>'
+							+		'<li>	<label for="feedback_name">' + fm_options.name_label + '</label> <input type="text" id="feedback_name" placeholder="' + fm_options.name_placeholder + '"></input> </li>'
 
 							+		 email_html
 
-							+		'<li>	<label for="feedback_message">' + fm_options.message_label + '</label> <textarea rows="5" id="feedback_message"></textarea> </li>'
+							+		'<li>	<label for="feedback_message">' + fm_options.message_label + '</label> <textarea rows="5" id="feedback_message" placeholder="' + fm_options.message_placeholder + '"></textarea> </li>'
 							+		'<li>	<button id="feedback_submit" onclick="fm.sendFeedback();" class="' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
 							+	'</ul>'
 						+ '</div>');
@@ -281,6 +299,9 @@ var fm = (function () {
 			name_label : "Name",
 			email_label : "Email",
 			message_label : "Message",
+			name_placeholder : "",
+			email_placeholder : "",
+			message_placeholder : "",
 			submit_label : "Send",
 			title_label : "Feedback",
 			trigger_label : "Feedback"

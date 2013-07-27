@@ -5,7 +5,6 @@ Description:
 =====
 
 This jQuery plug-in allows user to easily add an animatable UI widget with a feedback form which slides from the side of the screen.
-I got list of new features and styles to add to make it more powerfull and better looking, so stay tuned for new stuff.
 If you got any requests for new features feel free to open an issue or email me vedmack@gmail.com
 
 
@@ -17,6 +16,8 @@ Features:
   - RTL support
   - Uses ajax post to send data to server ('name', 'message' and 'email' parameters will be send to your servlet/php file etc...)
   - All labels are customizable
+  - Customizable placeholder (HTML5) for all input fields
+  
 
 
 Examples:
@@ -35,6 +36,7 @@ Usage:
 ```javascript
 $(document).ready(function(){
 	fm_options = {
+		name_placeholder:"Name please",				
 		trigger_label : "Click me",
 		jQueryUI : true,
 		feedback_url : "send_feedback"
@@ -54,6 +56,9 @@ All available parameters (detailed explanation inside jquery.feedback_me.js)
 * name_label
 * email_label
 * message_label
+* name_placeholder
+* email_placeholder
+* message_placeholder
 * submit_label
 * title_label
 * trigger_label
@@ -69,6 +74,9 @@ var default_options = {
 	name_label : "Name",
 	email_label : "Email",
 	message_label : "Message",
+	name_placeholder : "",
+	email_placeholder : "",
+	message_placeholder : "",	
 	submit_label : "Send",
 	title_label : "Feedback",
 	trigger_label : "Feedback"
