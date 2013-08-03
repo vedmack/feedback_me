@@ -21,6 +21,7 @@
 	-webkit-border-bottom-left-radius: 0px;
 	-moz-border-radius-bottomleft: 0px;
 	border-bottom-left-radius: 0px;
+	z-index: 2001;
 }
 
 #feedback_content {
@@ -29,6 +30,7 @@
 	position: fixed;
 	top: 50px;
 	left: 0;
+	z-index: 2001;
 }
 
 #feedback_content.email_present {
