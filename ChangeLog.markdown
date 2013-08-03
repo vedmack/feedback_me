@@ -1,4 +1,5 @@
-# Yet Another DataTables Column Filter (Yadcf) ChangeLog
+# jQuery Feedback Me Plugin ChangeLog
+
 
 ## 0.2.5
 
