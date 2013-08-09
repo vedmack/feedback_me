@@ -23,7 +23,7 @@ Features:
 Examples:
 =====
 
-[clean example](http://feedback-me.appspot.com/example_clean.html)
+[Clean example](http://feedback-me.appspot.com/example_clean.html)
 
 [jQuery UI theme aware example](http://feedback-me.appspot.com/example_jqueryUI.html)
 
