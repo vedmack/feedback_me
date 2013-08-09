@@ -27,7 +27,10 @@ Examples:
 
 [jQuery UI theme aware example](http://feedback-me.appspot.com/example_jqueryUI.html)
 
-[bootstrap example](http://feedback-me.appspot.com/example_bootstrap.html)
+[Bootstrap example](http://feedback-me.appspot.com/example_bootstrap.html)
+
+[Bootstrap example (Lab v.0.2.7)](http://feedback-me.appspot.com/example_bootstrap_lab.html)
+
 
 
 Usage:
