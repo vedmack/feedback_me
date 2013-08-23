@@ -17,6 +17,8 @@ Features:
   - Uses ajax post to send data to server ('name', 'message' and 'email' parameters will be send to your servlet/php file etc...)
   - All labels are customizable
   - Customizable placeholder (HTML5) for all input fields
+  - Optional required attribute (HTML5) for all input fields with homegrown validation
+  - Optional asterisk next to label of required input fields
   
 
 
@@ -29,19 +31,17 @@ Examples:
 
 [Bootstrap example](http://feedback-me.appspot.com/example_bootstrap.html)
 
-[Bootstrap example (Lab v.0.2.7)](http://feedback-me.appspot.com/example_bootstrap_lab.html)
-
-
-
 Usage:
 =====
 
 ```javascript
 $(document).ready(function(){
 	fm_options = {
-		name_placeholder:"Name please",				
-		trigger_label : "Click me",
 		jQueryUI : true,
+		name_placeholder:"Name please",						
+		trigger_label : "Click me",
+		message_required : true,
+		show_asterisk_for_required : true,
 		feedback_url : "send_feedback"
 	};
 
@@ -62,6 +62,10 @@ All available parameters (detailed explanation inside jquery.feedback_me.js)
 * name_placeholder
 * email_placeholder
 * message_placeholder
+* name_required
+* email_required
+* message_required
+* show_asterisk_for_required
 * submit_label
 * title_label
 * trigger_label
@@ -80,6 +84,10 @@ var default_options = {
 	name_placeholder : "",
 	email_placeholder : "",
 	message_placeholder : "",	
+	name_required : false,
+	email_required : false,
+	message_required : false,
+	show_asterisk_for_required : false,
 	submit_label : "Send",
 	title_label : "Feedback",
 	trigger_label : "Feedback"

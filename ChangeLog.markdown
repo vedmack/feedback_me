@@ -1,5 +1,10 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.2.7
+
+* Added optional required attribute (HTML5) for all input fields with homegrown validation
+* Added optional asterisk next to label of required input fields
+
 
 ## 0.2.5
 

@@ -42,6 +42,10 @@
 	margin-bottom: 20px;
 }
 
+#feedback_content label {
+	display: inline-block;
+}
+
 #feedback_name {
 	display: block;
 	width: 340px;
@@ -182,4 +186,8 @@
 
 .fm_bootstrap#feedback_trigger:hover{
 	background-color: #CCCCCC;
+}
+
+.required_asterisk {
+	color: red;
 }
