@@ -27,6 +27,8 @@ Examples:
 
 [Clean example](http://feedback-me.appspot.com/example_clean.html)
 
+[Clean complex example](http://feedback-me.appspot.com/example_clean_complex.html)
+
 [jQuery UI theme aware example](http://feedback-me.appspot.com/example_jqueryUI.html)
 
 [Bootstrap example](http://feedback-me.appspot.com/example_bootstrap.html)
@@ -49,44 +51,28 @@ $(document).ready(function(){
 });
 ```
 
-All available parameters (detailed explanation inside jquery.feedback_me.js)
-
-* feedback_url
-* jQueryUI
-* bootstrap
-* show_email
-* close_on_click_outisde
-* name_label
-* email_label
-* message_label
-* name_placeholder
-* email_placeholder
-* message_placeholder
-* name_required
-* email_required
-* message_required
-* show_asterisk_for_required
-* submit_label
-* title_label
-* trigger_label
-
-Default settings :
+All available parameters + default settings (detailed explanation inside jquery.feedback_me.js) :
 
 ```javascript
 var default_options = {
+	feedback_url : "",
 	jQueryUI : false,
 	bootstrap : false,
 	show_email : false,
+	show_radio_button_list : false,
 	close_on_click_outisde: true,
 	name_label : "Name",
 	email_label : "Email",
 	message_label : "Message",
+	radio_button_list_labels : ["1", "2", "3", "4", "5"],
+	radio_button_list_title : "How would you rate my site?",
 	name_placeholder : "",
 	email_placeholder : "",
-	message_placeholder : "",	
+	message_placeholder : "",
 	name_required : false,
 	email_required : false,
 	message_required : false,
+	radio_button_list_required : false,
 	show_asterisk_for_required : false,
 	submit_label : "Send",
 	title_label : "Feedback",

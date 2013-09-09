@@ -191,3 +191,40 @@
 .required_asterisk {
 	color: red;
 }
+
+#feedback_content.radio_button_list_present {
+	height: 380px;
+}
+
+#feedback_content.email_present.radio_button_list_present {
+	height: 440px;
+}
+
+.radio_button_wrapper{
+    display:inline-block;
+    text-align:center;
+	margin-right:35px;
+}
+#feedback_content .radio_button_wrapper label {
+    display:block;
+}
+
+#radio_button_list_title_wrapper{
+	margin-bottom: 10px;
+}
+
+.fm_jquery#feedback_content.radio_button_list_present {
+	height: 430px;
+}
+
+.fm_bootstrap#feedback_content.radio_button_list_present {
+	height: 470px;
+}
+
+.fm_jquery#feedback_content.email_present.radio_button_list_present {
+	height: 500px;
+}
+
+.fm_bootstrap#feedback_content.email_present.radio_button_list_present {
+	height: 550px;
+}

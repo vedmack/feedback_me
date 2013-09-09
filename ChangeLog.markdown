@@ -1,5 +1,11 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.3.0
+
+* Added optional radio button list input (5 radio buttons), can be used to rank something or any other purpose, all labels of the radios are customizable (string array) and it can be set to required too + its title is also customizable
+* Fixed several IE8 js issues
+
+
 ## 0.2.7
 
 * Added optional required attribute (HTML5) for all input fields with homegrown validation
