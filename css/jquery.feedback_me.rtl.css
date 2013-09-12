@@ -228,3 +228,19 @@
 .fm_bootstrap#feedback_content.email_present.radio_button_list_present {
 	height: 550px;
 }
+
+@media \0screen {
+	.fm_clean .feedback_trigger_text, .fm_jquery .feedback_trigger_text, .fm_bootstrap .feedback_trigger_text {
+		left:-70px;
+		width:100px;
+		margin-top:-45px;
+		filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.00000000, M12=1.00000000, M21=-1.00000000, M22=0.00000000,sizingMethod='auto expand');
+	}
+	.fm_jquery .feedback_trigger_text {
+		margin-top:-40px;
+	}	
+	.fm_bootstrap .feedback_trigger_text {
+		left:-65px;
+		margin-top:-40px;
+	}
+}

@@ -7,7 +7,7 @@
     "feedback",
     "plugin"
   ],
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": {
     "name": "Daniel Reznick",
     "url": "https://github.com/vedmack"
@@ -19,7 +19,7 @@
     }
   ],
   "bugs": "https://github.com/vedmack/feedback_me/issues",
-  "homepage": "https://github.com/vedmack/feedback_me",
+  "homepage": "http://feedback-me.appspot.com/",
   "docs": "https://github.com/vedmack/feedback_me/blob/master/README.md",
   "download": "https://github.com/vedmack/feedback_me/archive/master.zip",
   "dependencies": {
