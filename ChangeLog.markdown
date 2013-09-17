@@ -1,5 +1,10 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.3.2
+
+* Email input is now using HTML5 type + added simple email validation
+
+
 ## 0.3.1
 
 * Fixed IE8 style issues

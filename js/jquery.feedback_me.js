@@ -4,7 +4,7 @@
 * jQuery Feedback Plugin
 * 
 * File:        jquery.feedback_me.js
-* Version:     0.3.0
+* Version:     0.3.2
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me
 * Contact:     vedmack@gmail.com	
@@ -218,9 +218,14 @@ var fm = (function () {
 		);
 	}
 
+	function emailValid(str) {
+		var lastAtPos = str.lastIndexOf('@');
+		return (lastAtPos < (str.length - 1) && lastAtPos > 0 && str.indexOf('@@') === -1 && str.length > 2);
+	}
+
 	function validateFeedbackForm() {
 		if ((fm_options.name_required === true && $("#feedback_name").val() === "") ||
-				(fm_options.email_required === true && $("#feedback_email").val() === "") ||
+				((fm_options.email_required === true && $("#feedback_email").val() === "") || (fm_options.email_required === true && emailValid($("#feedback_email").val()) === false)) ||
 				(fm_options.message_required === true && $("#feedback_message").val() === "") ||
 				(fm_options.radio_button_list_required === true && $("#feedback_me_form input[name=feedback_radio]:checked").val() === undefined)) {
 			return false;
@@ -228,6 +233,8 @@ var fm = (function () {
 		return true;
 
 	}
+
+
 
 	function checkRequiredFieldsOk() {
 		var $reqFields = $("[required]"),
@@ -337,7 +344,7 @@ var fm = (function () {
 		}
 
 		if (fm_options.show_email === true) {
-			email_html = '<li>	<label for="feedback_email">' + fm_options.email_label + '</label> ' + email_asterisk + ' <input type="text" id="feedback_email" ' + email_required + ' placeholder="' + fm_options.email_placeholder + '"></input> </li>';
+			email_html = '<li>	<label for="feedback_email">' + fm_options.email_label + '</label> ' + email_asterisk + ' <input type="email" id="feedback_email" ' + email_required + ' placeholder="' + fm_options.email_placeholder + '"></input> </li>';
 			email_feedback_content_class = " email_present";
 		}
 
