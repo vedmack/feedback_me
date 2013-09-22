@@ -1,5 +1,10 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.3.4
+
+* Added option to set the position of the feedback widget (4 possible locations) : left-top / left-bottom / right-top / right-bottom
+
+
 ## 0.3.2
 
 * Email input is now using HTML5 type + added simple email validation

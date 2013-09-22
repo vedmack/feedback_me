@@ -13,6 +13,7 @@ Features:
 
   - Bootstrap support 
   - jQuery UI themes support
+  - 4 different possible locations to place the widget
   - RTL support
   - Uses ajax post to send data to server ('name', 'message' and 'email' parameters will be send to your servlet/php file etc...)
   - All labels are customizable
@@ -40,6 +41,7 @@ Usage:
 $(document).ready(function(){
 	fm_options = {
 		jQueryUI : true,
+		position : "left-bottom",
 		name_placeholder:"Name please",						
 		trigger_label : "Click me",
 		message_required : true,
@@ -56,6 +58,7 @@ All available parameters + default settings (detailed explanation inside jquery.
 ```javascript
 var default_options = {
 	feedback_url : "",
+	position : "left-top",
 	jQueryUI : false,
 	bootstrap : false,
 	show_email : false,

@@ -4,7 +4,7 @@
 * jQuery Feedback Plugin
 * 
 * File:        jquery.feedback_me.js
-* Version:     0.3.2
+* Version:     0.3.4
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me
 * Contact:     vedmack@gmail.com	
@@ -27,6 +27,12 @@
 				Type:				String
 				Description:		URL of your servlet/php etc ('name', 'message' and 'email' parameters will be send to your servlet/php etc...)
 
+* position				
+				Required:			false
+				Type:				String
+				Default value:		left-top
+				Possible values:	left-top / left-bottom / right-top / right-bottom 
+				Description:		Set the position where the feedback widget will be located
 * jQueryUI
 				Required:			false
 				Type:				boolean
@@ -169,7 +175,7 @@ var fm = (function () {
 		animation_show.marginLeft = "+=380px";
 		animation_hide.marginLeft = "-=380px";
 
-		if ($("body").attr("dir") === "rtl") {
+		if ($("body").attr("dir") === "rtl" || fm.getFmOptions().position.indexOf("right-") !== -1) {
 			animation_show.marginRight = "+=380px";
 			animation_hide.marginRight = "-=380px";
 		}
@@ -205,7 +211,7 @@ var fm = (function () {
 
 		var animation_hide = {};
 		animation_hide.marginLeft = "-=380px";
-		if ($("body").attr("dir") === "rtl") {
+		if ($("body").attr("dir") === "rtl" || fm.getFmOptions().position.indexOf("right-") !== -1) {
 			animation_hide.marginRight = "-=380px";
 		}
 
@@ -348,11 +354,11 @@ var fm = (function () {
 			email_feedback_content_class = " email_present";
 		}
 
-		$('body').append('<div id="feedback_trigger" onclick="fm.stopPropagation(event);fm.triggerAction(event);" class="feedback_trigger_closed ' + jQueryUIClasses1 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
+		$('body').append('<div id="feedback_trigger" onclick="fm.stopPropagation(event);fm.triggerAction(event);" class="feedback_trigger_closed ' + fm_options.position + jQueryUIClasses1 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
 				+	'<span class="feedback_trigger_text">' + fm_options.trigger_label
 				+	'</span></div>');
 
-		$('body').append('<div id="feedback_content" class="feedback_content_closed ' + email_feedback_content_class + radio_button_list_class + jQueryUIClasses2 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
+		$('body').append('<div id="feedback_content" class="feedback_content_closed ' + fm_options.position + email_feedback_content_class + radio_button_list_class + jQueryUIClasses2 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
 							+ '<div class="feedback_title ' + jQueryUIClasses1 + jQueryUIClasses3 + '">'
 							+	'<span class="' + jQueryUIClasses4 + '">' + fm_options.title_label + '</span>'
 							+ '</div>'
@@ -407,7 +413,7 @@ var fm = (function () {
 
 				var animation_hide = {};
 				animation_hide.marginLeft = "-=380px";
-				if ($("body").attr("dir") === "rtl") {
+				if ($("body").attr("dir") === "rtl" || fm.getFmOptions().position.indexOf("right-") !== -1) {
 					animation_hide.marginRight = "-=380px";
 				}
 
@@ -437,6 +443,7 @@ var fm = (function () {
 
 		var default_options = {
 			feedback_url : "",
+			position : "left-top",
 			jQueryUI : false,
 			bootstrap : false,
 			show_email : false,
