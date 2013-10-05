@@ -1,5 +1,11 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+
+## 0.3.6
+
+* Added "custom_params" option to send additional data to the server (can be used for sending: csrf token / logged in user_name / etc`)
+
+
 ## 0.3.4
 
 * Added option to set the position of the feedback widget (4 possible locations) : left-top / left-bottom / right-top / right-bottom

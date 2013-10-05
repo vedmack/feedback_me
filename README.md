@@ -16,6 +16,7 @@ Features:
   - 4 different possible locations to place the widget
   - RTL support
   - Uses ajax post to send data to server ('name', 'message' and 'email' parameters will be send to your servlet/php file etc...)
+  - Ability to send additional params to server (csrf token / logged in user_name / etc`)
   - All labels are customizable
   - Customizable placeholder (HTML5) for all input fields
   - Optional required attribute (HTML5) for all input fields with homegrown validation
@@ -79,7 +80,8 @@ var default_options = {
 	show_asterisk_for_required : false,
 	submit_label : "Send",
 	title_label : "Feedback",
-	trigger_label : "Feedback"
+	trigger_label : "Feedback",
+	custom_params : {}
 };
 ```
 

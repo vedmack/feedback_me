@@ -4,7 +4,7 @@
 * jQuery Feedback Plugin
 * 
 * File:        jquery.feedback_me.js
-* Version:     0.3.4
+* Version:     0.3.6
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me
 * Contact:     vedmack@gmail.com	
@@ -158,6 +158,12 @@
 				Type:				boolean
 				Default value:		true
 				Description:		Will cause the feedback dialog to be closed on clicking anywhere outside the dialog
+				
+* custom_params				
+				Required:			false
+				Type:				associative array
+				Default value:		{}
+				Description:		Use it if you want to send additional data to the server (can be used for sending: csrf token / logged in user_name / etc`)
 *
 *
 */
@@ -400,15 +406,25 @@ var fm = (function () {
 	}
 
 	function sendFeedback(event) {
-		var checkValid = checkRequiredFieldsOk();
+		var checkValid = checkRequiredFieldsOk(),
+			dataArray;
 		if (checkValid === false) {
 			stopPropagation(event);
 			return;
 		}
+		dataArray = {
+			name: $("#feedback_name").val(),
+			message: $("#feedback_message").val(),
+			email: $("#feedback_email").val(),
+			radio_list_value: $("#feedback_me_form input[name=feedback_radio]:checked").val()
+		};
+
+		dataArray = $.extend(fm.getFmOptions().custom_params, dataArray);
+
 		$.ajax({
 			type: 'POST',
 			url: fm.getFmOptions().feedback_url,
-			data: { name: $("#feedback_name").val(), message: $("#feedback_message").val(), email: $("#feedback_email").val(), radio_list_value: $("#feedback_me_form input[name=feedback_radio]:checked").val()},
+			data: dataArray,
 			beforeSend: function (xhr) {
 
 				var animation_hide = {};
@@ -464,7 +480,8 @@ var fm = (function () {
 			show_asterisk_for_required : false,
 			submit_label : "Send",
 			title_label : "Feedback",
-			trigger_label : "Feedback"
+			trigger_label : "Feedback",
+			custom_params : {}
 		};
 
 		fm_options = $.extend(default_options, options);
