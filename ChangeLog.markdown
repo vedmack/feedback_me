@@ -1,7 +1,7 @@
 # jQuery Feedback Me Plugin ChangeLog
 
 
-## 0.3.6
+## 0.3.7
 
 * Added "custom_params" option to send additional data to the server (can be used for sending: csrf token / logged in user_name / etc`)
 
