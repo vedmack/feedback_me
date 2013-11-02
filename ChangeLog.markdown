@@ -1,5 +1,9 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.3.8
+
+* Bug fix Prevent form submit when there is no use in required inputs, https://github.com/vedmack/feedback_me/issues/8
+
 
 ## 0.3.7
 
