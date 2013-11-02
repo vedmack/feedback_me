@@ -3,11 +3,12 @@
 *
 * jQuery Feedback Plugin
 * 
-* File:        jquery.feedback_me.js
-* Version:     0.3.7
-* Author:      Daniel Reznick
-* Info:        https://github.com/vedmack/feedback_me
-* Contact:     vedmack@gmail.com	
+* File:			jquery.feedback_me.js
+* Version:		0.3.8
+* Author:		Daniel Reznick
+* Info:			https://github.com/vedmack/feedback_me
+* Contact:		vedmack@gmail.com
+* Twitter:		https://twitter.com/danielreznick
 * 
 * Copyright 2013 Daniel Reznick, all rights reserved.
 *
@@ -254,16 +255,7 @@ var fm = (function () {
 			form_valid = true;
 
 		if ($reqFields.length > 0) {
-			//prevent form submit (needed for validation)
-			$('#feedback_me_form').submit(function (event) {
-				event.preventDefault();
-			});
-
-			$fm_form = $('#feedback_me_form');
 			form_valid = validateFeedbackForm();
-			if (form_valid === false) {
-				$fm_form.submit();
-			}
 		}
 		return form_valid;
 	}
@@ -378,7 +370,7 @@ var fm = (function () {
 
 							+		 radio_button_list_html
 
-							+		'<li>	<button id="feedback_submit" onclick="fm.sendFeedback(event);" class="' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
+							+		'<li>	<button id="feedback_submit" type="submit" onclick="fm.sendFeedback(event);" class="' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
 							+	'</ul>'
 							+	'</form>'
 						+ '</div>');
@@ -395,6 +387,10 @@ var fm = (function () {
 			applyCloseOnClickOutside();
 		}
 
+		//prevent form submit (needed for validation)
+		$('#feedback_me_form').submit(function (event) {
+			event.preventDefault();
+		});
 	}
 
 	function stopPropagation(evt) {
