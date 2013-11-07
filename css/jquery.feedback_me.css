@@ -311,3 +311,10 @@
 .fm_bootstrap.feedback_content_closed.right-top, .fm_bootstrap.feedback_content_closed.right-top {
 	margin-right: -380px;
 }
+
+#feedback_me_frame {
+	border: none; 
+	overflow: auto; 
+	height: 90%;
+	width: 98%;
+}

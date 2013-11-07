@@ -1,5 +1,10 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.4.0
+
+* Added "iframe_url" option to allow the use of any html file that you want, html file will be embeded inside feedback_me widget.
+
+
 ## 0.3.8
 
 * Bug fix Prevent form submit when there is no use in required inputs, https://github.com/vedmack/feedback_me/issues/8

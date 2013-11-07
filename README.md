@@ -14,6 +14,7 @@ Features:
   - Bootstrap support 
   - jQuery UI themes support
   - 4 different possible locations to place the widget
+  - Ability to embed any external html file inside the feedback_me widget for maximum customization
   - RTL support
   - Uses ajax post to send data to server ('name', 'message' and 'email' parameters will be send to your servlet/php file etc...)
   - Ability to send additional params to server (csrf token / logged in user_name / etc`)
@@ -34,6 +35,8 @@ Examples:
 [jQuery UI theme aware example](http://feedback-me.appspot.com/example_jqueryUI.html)
 
 [Bootstrap example](http://feedback-me.appspot.com/example_bootstrap.html)
+
+[External iframe example](http://feedback-me.appspot.com/example_external_iframe.html)
 
 Usage:
 =====
@@ -81,7 +84,8 @@ var default_options = {
 	submit_label : "Send",
 	title_label : "Feedback",
 	trigger_label : "Feedback",
-	custom_params : {}
+	custom_params : {},
+	iframe_url : undefined
 };
 ```
 

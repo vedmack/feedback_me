@@ -4,7 +4,7 @@
 * jQuery Feedback Plugin
 * 
 * File:			jquery.feedback_me.js
-* Version:		0.3.8
+* Version:		0.4.0
 * Author:		Daniel Reznick
 * Info:			https://github.com/vedmack/feedback_me
 * Contact:		vedmack@gmail.com
@@ -165,6 +165,12 @@
 				Type:				associative array
 				Default value:		{}
 				Description:		Use it if you want to send additional data to the server (can be used for sending: csrf token / logged in user_name / etc`)
+* iframe_url				
+				Required:			false
+				Type:				String
+				Default value:		undefined
+				Description:		Allows the use of any html file that you want, html file will be embeded inside feedback_me widget, in order to close the feedback_me widget
+									just call the followinog command: parent.fm.triggerAction(event); dont forget to pass the "event" from you onclick call to the triggerAction function
 *
 *
 */
@@ -273,7 +279,9 @@ var fm = (function () {
 	}
 
 	function appendFeedbackToBody() {
-		var jQueryUIClasses1 = "",
+		var form_html = "",
+			iframe_html = "",
+			jQueryUIClasses1 = "",
 			jQueryUIClasses2 = "",
 			jQueryUIClasses3 = "",
 			jQueryUIClasses4 = "",
@@ -352,6 +360,24 @@ var fm = (function () {
 			email_feedback_content_class = " email_present";
 		}
 
+		if (fm_options.iframe_url === undefined) {
+			form_html = '<form id="feedback_me_form">'
+				+	'<ul>'
+				+		'<li>	<label for="feedback_name">' + fm_options.name_label + '</label> ' + name_asterisk + ' <input type="text" id="feedback_name" ' + name_required + ' placeholder="' + fm_options.name_placeholder + '"></input> </li>'
+
+				+		 email_html
+
+				+		'<li>	<label for="feedback_message">' + fm_options.message_label + '</label> ' + message_asterisk + ' <textarea rows="5" id="feedback_message" ' + message_required + ' placeholder="' + fm_options.message_placeholder + '"></textarea> </li>'
+
+				+		 radio_button_list_html
+
+				+		'<li>	<button id="feedback_submit" type="submit" onclick="fm.sendFeedback(event);" class="' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
+				+	'</ul>'
+				+	'</form>';
+		} else {
+			iframe_html = '<iframe name="feedback_me_frame" id="feedback_me_frame" frameborder="0" src="' + fm_options.iframe_url + '"></iframe>';
+		}
+
 		$('body').append('<div id="feedback_trigger" onclick="fm.stopPropagation(event);fm.triggerAction(event);" class="feedback_trigger_closed ' + fm_options.position + jQueryUIClasses1 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
 				+	'<span class="feedback_trigger_text">' + fm_options.trigger_label
 				+	'</span></div>');
@@ -360,19 +386,8 @@ var fm = (function () {
 							+ '<div class="feedback_title ' + jQueryUIClasses1 + jQueryUIClasses3 + '">'
 							+	'<span class="' + jQueryUIClasses4 + '">' + fm_options.title_label + '</span>'
 							+ '</div>'
-							+	'<form id="feedback_me_form">'
-							+	'<ul>'
-							+		'<li>	<label for="feedback_name">' + fm_options.name_label + '</label> ' + name_asterisk + ' <input type="text" id="feedback_name" ' + name_required + ' placeholder="' + fm_options.name_placeholder + '"></input> </li>'
-
-							+		 email_html
-
-							+		'<li>	<label for="feedback_message">' + fm_options.message_label + '</label> ' + message_asterisk + ' <textarea rows="5" id="feedback_message" ' + message_required + ' placeholder="' + fm_options.message_placeholder + '"></textarea> </li>'
-
-							+		 radio_button_list_html
-
-							+		'<li>	<button id="feedback_submit" type="submit" onclick="fm.sendFeedback(event);" class="' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
-							+	'</ul>'
-							+	'</form>'
+							+  form_html
+							+  iframe_html
 						+ '</div>');
 
 		if (fm_options.jQueryUI === true) {
@@ -477,7 +492,8 @@ var fm = (function () {
 			submit_label : "Send",
 			title_label : "Feedback",
 			trigger_label : "Feedback",
-			custom_params : {}
+			custom_params : {},
+			iframe_url : undefined
 		};
 
 		fm_options = $.extend(default_options, options);
