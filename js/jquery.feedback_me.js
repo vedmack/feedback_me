@@ -4,7 +4,7 @@
 * jQuery Feedback Plugin
 * 
 * File:			jquery.feedback_me.js
-* Version:		0.4.0
+* Version:		0.4.3
 * Author:		Daniel Reznick
 * Info:			https://github.com/vedmack/feedback_me
 * Contact:		vedmack@gmail.com
@@ -169,7 +169,7 @@
 				Required:			false
 				Type:				String
 				Default value:		undefined
-				Description:		Allows the use of any html file that you want, html file will be embeded inside feedback_me widget, in order to close the feedback_me widget
+				Description:		Allows you to use any html file that you want, it will be placed inside feedback_me widget, in order to close the feedback_me widget
 									just call the followinog command: parent.fm.triggerAction(event); dont forget to pass the "event" from you onclick call to the triggerAction function
 *
 *
@@ -178,7 +178,8 @@ var fm = (function () {
 
 	'use strict';
 
-	var fm_options;
+	var fm_options,
+		supportsTransitions;
 
 	function triggerAction(event) {
 
@@ -194,25 +195,30 @@ var fm = (function () {
 		}
 
 		if ($("#feedback_trigger").hasClass("feedback_trigger_closed")) {
-
-			$("#feedback_trigger , #feedback_content").animate(
-				animation_show,
-				500,
-				'easeInOutSine',
-				function () {
-					$("#feedback_trigger").removeClass("feedback_trigger_closed");
-					$("#feedback_content").removeClass("feedback_content_closed");
-				}
-			);
+			if (supportsTransitions === true) {
+				$("#feedback_trigger").removeClass("feedback_trigger_closed");
+				$("#feedback_content").removeClass("feedback_content_closed");
+			} else {
+				$("#feedback_trigger , #feedback_content").animate(
+					animation_show,
+					500,
+					'easeInOutSine',
+					function () {
+						$("#feedback_trigger").removeClass("feedback_trigger_closed");
+						$("#feedback_content").removeClass("feedback_content_closed");
+					}
+				);
+			}
 		} else {
 			//first add the closed class so double (which will trigger closeFeedback function) click wont try to hide the form twice
 			$("#feedback_trigger").addClass("feedback_trigger_closed");
 			$("#feedback_content").addClass("feedback_content_closed");
-
-			$("#feedback_trigger , #feedback_content").animate(
-				animation_hide,
-				500
-			);
+			if (supportsTransitions === false) {
+				$("#feedback_trigger , #feedback_content").animate(
+					animation_hide,
+					500
+				);
+			}
 		}
 	}
 
@@ -230,11 +236,12 @@ var fm = (function () {
 
 		$("#feedback_trigger").addClass("feedback_trigger_closed");
 		$("#feedback_content").addClass("feedback_content_closed");
-
-		$("#feedback_trigger , #feedback_content").animate(
-			animation_hide,
-			500
-		);
+		if (supportsTransitions === false) {
+			$("#feedback_trigger , #feedback_content").animate(
+				animation_hide,
+				500
+			);
+		}
 	}
 
 	function emailValid(str) {
@@ -444,22 +451,50 @@ var fm = (function () {
 					animation_hide.marginRight = "-=380px";
 				}
 
-				$("#feedback_trigger , #feedback_content").animate(
-					animation_hide,
-					500,
-					function () {
-						$("#feedback_trigger").addClass("feedback_trigger_closed");
-						$("#feedback_name").val("");
-						$("#feedback_message").val("");
-						$("#feedback_email").val("");
-						$("#feedback_me_form input[name=feedback_radio]").prop('checked', false);
-					}
-				);
+				if (supportsTransitions === true) {
+					$("#feedback_trigger").addClass("feedback_trigger_closed");
+					$("#feedback_content").addClass("feedback_content_closed");
+				} else {
+					$("#feedback_trigger , #feedback_content").animate(
+						animation_hide,
+						500,
+						function () {
+							$("#feedback_trigger").addClass("feedback_trigger_closed");
+							$("#feedback_name").val("");
+							$("#feedback_message").val("");
+							$("#feedback_email").val("");
+							$("#feedback_me_form input[name=feedback_radio]").prop('checked', false);
+						}
+					);
+				}
 			},
 			error: function (ob, errStr) {
 				alert("Failed to send feedback (please double check your feedback_url parameter)");
 			}
 		});
+	}
+
+	function detectTransitionSupport() {
+		var be = document.body || document.documentElement,
+			style = be.style,
+			p = 'transition',
+			vendors,
+			i;
+		if (typeof style[p] === 'string') {
+			supportsTransitions = true;
+			return;
+		}
+
+		vendors = ['Moz', 'Webkit', 'Khtml', 'O', 'ms'];
+		p = p.charAt(0).toUpperCase() + p.substr(1);
+		for (i = 0; i < vendors.length; i++) {
+			if (typeof style[vendors[i] + p] === 'string') {
+				supportsTransitions = true;
+				return;
+			}
+		}
+		supportsTransitions = false;
+		return;
 	}
 
 	function getFmOptions() {
@@ -499,6 +534,8 @@ var fm = (function () {
 		fm_options = $.extend(default_options, options);
 
 		appendFeedbackToBody();
+
+		detectTransitionSupport();
 	}
 
     return {

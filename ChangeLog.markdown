@@ -1,5 +1,10 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.4.3
+
+* Using CSS3 Transition for sliding out the feedback widget - jquery UI ased as a fallback for older browsers (since this version jquery UI is not a must to include).
+
+
 ## 0.4.0
 
 * Added "iframe_url" option to allow the use of any html file that you want, html file will be embeded inside feedback_me widget.

@@ -1,13 +1,13 @@
 {
   "name": "feedback_me",
-  "title": "jQuery Feedback Plugin",
+  "title": "jQuery Feedback Me Plugin",
   "description": "This jQuery plug-in allows user to easily add an animatable UI widget with a feedback form which slides from the side of the screen.",
   "keywords": [
     "jquery",
     "feedback",
     "plugin"
   ],
-  "version": "0.4.0",
+  "version": "0.4.3",
   "author": {
     "name": "Daniel Reznick",
     "url": "https://github.com/vedmack"

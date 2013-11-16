@@ -1,6 +1,11 @@
 #feedback_content, #feedback_trigger {
 	font-size: 16px;
 	font-family: 'Helvetica Neue', Helvetica, Tahoma, Arial, sans-serif;
+	
+	-webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    -o-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
 }
 
 #feedback_content ul {
@@ -126,13 +131,36 @@
 	margin-right: 10px;
 }
 
-.fm_clean.feedback_content_closed.left-top, .fm_clean.feedback_content_closed.left-bottom{
+#feedback_content.fm_clean.feedback_content_closed.left-top, #feedback_content.fm_clean.feedback_content_closed.left-bottom{
 	margin-left: -380px;
 }
 
+#feedback_content.fm_clean.left-top, #feedback_content.fm_clean.left-bottom{
+    margin-left: 0px;
+}
+ 
+#feedback_trigger.fm_clean.feedback_trigger_closed.left-top, #feedback_trigger.fm_clean.feedback_trigger_closed.left-bottom{
+    margin-left: 0px;
+}
+ 
+#feedback_trigger.fm_clean.left-top, #feedback_trigger.fm_clean.left-bottom{
+    margin-left: 380px;
+}
 
-.fm_jquery.feedback_content_closed.left-top, .fm_jquery.feedback_content_closed.left-bottom {
+#feedback_content.fm_jquery.feedback_content_closed.left-top, #feedback_content.fm_jquery.feedback_content_closed.left-bottom {
 	margin-left: -382px;
+}
+
+#feedback_content.fm_jquery.left-top, #feedback_content.fm_jquery.left-bottom {
+    margin-left: 0px;
+}
+ 
+#feedback_trigger.fm_jquery.feedback_trigger_closed.left-top, #feedback_trigger.fm_jquery.feedback_trigger_closed.left-bottom {
+    margin-left: 0px;
+}
+ 
+#feedback_trigger.fm_jquery.left-top, #feedback_trigger.fm_jquery.left-bottom {
+    margin-left: 382px;
 }
 
 .fm_jquery .feedback_trigger_text { 
@@ -154,9 +182,22 @@
 	border: 0px;
 }
 
-.fm_bootstrap.feedback_content_closed.left-top, .fm_bootstrap.feedback_content_closed.left-top {
+#feedback_content.fm_bootstrap.feedback_content_closed.left-top, #feedback_content.fm_bootstrap.feedback_content_closed.left-top {
 	margin-left: -380px;
 }
+
+#feedback_content.fm_bootstrap.left-top, #feedback_content.fm_bootstrap.left-top {
+    margin-left: 0px;
+}
+ 
+#feedback_trigger.fm_bootstrap.feedback_trigger_closed.left-top, #feedback_trigger.fm_bootstrap.feedback_trigger_closed.left-top {
+    margin-left: 0px;
+}
+ 
+#feedback_trigger.fm_bootstrap.left-top, #feedback_trigger.fm_bootstrap.left-top {
+    margin-left: 380px;
+}
+ 
 
 .fm_bootstrap .feedback_trigger_text { 
 	left: -25px;
@@ -304,12 +345,53 @@
 	right: 0;
 }
 
-.fm_clean.feedback_content_closed.right-top, .fm_clean.feedback_content_closed.right-bottom{
+#feedback_content.fm_clean.feedback_content_closed.right-top, #feedback_content.fm_clean.feedback_content_closed.right-bottom{
 	margin-right: -380px;
 }
 
-.fm_jquery.feedback_content_closed.right-top, .fm_jquery.feedback_content_closed.right-bottom {
+#feedback_content.fm_clean.right-top, #feedback_content.fm_clean.right-bottom{
+    margin-right: 0px;
+}
+ 
+#feedback_content.fm_jquery.feedback_content_closed.right-top, #feedback_content.fm_jquery.feedback_content_closed.right-bottom {
+    margin-right: -382px;
+}
+ 
+#feedback_content.fm_jquery.right-top, #feedback_content.fm_jquery.right-bottom {
+    margin-right: 0px;
+}
+
+#feedback_content.fm_jquery.feedback_content_closed.right-top, #feedback_content.fm_jquery.feedback_content_closed.right-bottom {
 	margin-right: -382px;
+}
+
+#feedback_content.fm_bootstrap.right-top, #feedback_content.fm_bootstrap.right-top {
+    margin-right: 0px;
+}
+ 
+ 
+#feedback_trigger.fm_clean.feedback_trigger_closed.right-top, #feedback_trigger.fm_clean.feedback_trigger_closed.right-bottom{
+    margin-right: 0px;
+}
+ 
+#feedback_trigger.fm_clean.right-top, #feedback_trigger.fm_clean.right-bottom{
+    margin-right: 380px;
+}
+ 
+#feedback_trigger.fm_jquery.feedback_trigger_closed.right-top, #feedback_trigger.fm_jquery.feedback_trigger_closed.right-bottom {
+    margin-right: 0px;
+}
+ 
+#feedback_trigger.fm_jquery.right-top, #feedback_trigger.fm_jquery.right-bottom {
+    margin-right: 382px;
+}
+ 
+#feedback_trigger.fm_bootstrap.feedback_trigger_closed.right-top, #feedback_trigger.fm_bootstrap.feedback_trigger_closed.right-top {
+    margin-right: 0px;
+}
+ 
+#feedback_trigger.fm_bootstrap.right-top, #feedback_trigger.fm_bootstrap.right-top {
+    margin-right: 380px;
 }
 
 .fm_bootstrap.feedback_content_closed.right-top, .fm_bootstrap.feedback_content_closed.right-top {
