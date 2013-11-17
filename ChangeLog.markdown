@@ -1,5 +1,10 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.4.4
+
+* Fixed jquery version check for using on instead of delegate (IE specific issue)
+
+
 ## 0.4.3
 
 * Using CSS3 Transition for sliding out the feedback widget - jquery UI ased as a fallback for older browsers (since this version jquery UI is not a must to include).
