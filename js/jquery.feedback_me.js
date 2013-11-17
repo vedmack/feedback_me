@@ -4,7 +4,7 @@
 * jQuery Feedback Plugin
 * 
 * File:			jquery.feedback_me.js
-* Version:		0.4.3
+* Version:		0.4.4
 * Author:		Daniel Reznick
 * Info:			https://github.com/vedmack/feedback_me
 * Contact:		vedmack@gmail.com
@@ -274,7 +274,10 @@ var fm = (function () {
 	}
 
 	function applyCloseOnClickOutside() {
-		if (parseFloat($().jquery) >= 1.7) {
+		var jqVersion = $().jquery.split(".");
+		jqVersion[0] = +jqVersion[0];
+		jqVersion[1] = +jqVersion[1];
+		if (jqVersion[0] >= 1 && jqVersion[1] >= 7) {
 			$(document).on("click", document, function (event) {
 				closeFeedback(event);
 			});
