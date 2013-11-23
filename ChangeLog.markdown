@@ -1,5 +1,11 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.4.6
+
+* Remove jQuery UI dependencies (the only additional required library for the plugin is jQuery) https://github.com/vedmack/feedback_me/issues/14
+* Bug fix clear input fields upon sending feedback, https://github.com/vedmack/feedback_me/issues/15
+
+
 ## 0.4.4
 
 * Fixed jquery version check for using on instead of delegate (IE specific issue)

@@ -4,7 +4,7 @@
 * jQuery Feedback Plugin
 * 
 * File:			jquery.feedback_me.js
-* Version:		0.4.4
+* Version:		0.4.6
 * Author:		Daniel Reznick
 * Info:			https://github.com/vedmack/feedback_me
 * Contact:		vedmack@gmail.com
@@ -179,7 +179,7 @@ var fm = (function () {
 	'use strict';
 
 	var fm_options,
-		supportsTransitions;
+		supportsTransitions = false;
 
 	function triggerAction(event) {
 
@@ -201,8 +201,7 @@ var fm = (function () {
 			} else {
 				$("#feedback_trigger , #feedback_content").animate(
 					animation_show,
-					500,
-					'easeInOutSine',
+					150,
 					function () {
 						$("#feedback_trigger").removeClass("feedback_trigger_closed");
 						$("#feedback_content").removeClass("feedback_content_closed");
@@ -216,7 +215,7 @@ var fm = (function () {
 			if (supportsTransitions === false) {
 				$("#feedback_trigger , #feedback_content").animate(
 					animation_hide,
-					500
+					150
 				);
 			}
 		}
@@ -239,7 +238,7 @@ var fm = (function () {
 		if (supportsTransitions === false) {
 			$("#feedback_trigger , #feedback_content").animate(
 				animation_hide,
-				500
+				150
 			);
 		}
 	}
@@ -426,6 +425,13 @@ var fm = (function () {
 		}
 	}
 
+	function clearInputs() {
+		$("#feedback_name").val("");
+		$("#feedback_message").val("");
+		$("#feedback_email").val("");
+		$("#feedback_me_form input[name=feedback_radio]").prop('checked', false);
+	}
+
 	function sendFeedback(event) {
 		var checkValid = checkRequiredFieldsOk(),
 			dataArray;
@@ -447,7 +453,6 @@ var fm = (function () {
 			url: fm.getFmOptions().feedback_url,
 			data: dataArray,
 			beforeSend: function (xhr) {
-
 				var animation_hide = {};
 				animation_hide.marginLeft = "-=380px";
 				if ($("body").attr("dir") === "rtl" || fm.getFmOptions().position.indexOf("right-") !== -1) {
@@ -460,17 +465,16 @@ var fm = (function () {
 				} else {
 					$("#feedback_trigger , #feedback_content").animate(
 						animation_hide,
-						500,
+						150,
 						function () {
 							$("#feedback_trigger").addClass("feedback_trigger_closed");
-							$("#feedback_name").val("");
-							$("#feedback_message").val("");
-							$("#feedback_email").val("");
-							$("#feedback_me_form input[name=feedback_radio]").prop('checked', false);
 						}
 					);
 				}
 			},
+			success: function (data) {
+				fm.clearInputs();
+            },
 			error: function (ob, errStr) {
 				alert("Failed to send feedback (please double check your feedback_url parameter)");
 			}
@@ -546,7 +550,8 @@ var fm = (function () {
 		sendFeedback : sendFeedback,
 		getFmOptions : getFmOptions,
 		triggerAction : triggerAction,
-		stopPropagation : stopPropagation
+		stopPropagation : stopPropagation,
+		clearInputs : clearInputs
     };
 
 }());

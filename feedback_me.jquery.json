@@ -5,9 +5,11 @@
   "keywords": [
     "jquery",
     "feedback",
-    "plugin"
+    "plugin",
+	"slide",
+	"form"
   ],
-  "version": "0.4.4",
+  "version": "0.4.6",
   "author": {
     "name": "Daniel Reznick",
     "url": "https://github.com/vedmack"
@@ -23,7 +25,6 @@
   "docs": "https://github.com/vedmack/feedback_me/blob/master/README.md",
   "download": "https://github.com/vedmack/feedback_me/archive/master.zip",
   "dependencies": {
-    "jquery": ">=1.4",
-	"jqueryui": ">=1.7"
+    "jquery": ">=1.4"
   }
 }
