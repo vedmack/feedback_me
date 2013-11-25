@@ -11,7 +11,7 @@ If you got any requests for new features feel free to open an issue or email me 
 Features:
 =====
 
-  - Using CSS3 Transition for sliding out the feedback widget (jquery UI used as a fallback for older browsers)
+  - Using CSS3 Transition for sliding out the feedback widget (jquery used as a fallback for older browsers)
   - Bootstrap support 
   - jQuery UI themes support
   - 4 different possible locations to place the widget
