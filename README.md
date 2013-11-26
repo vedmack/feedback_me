@@ -16,7 +16,7 @@ Features:
   - jQuery UI themes support
   - 4 different possible locations to place the widget
   - Using AJAX post to send data to server ('name', 'message' and 'email' parameters will be send to your servlet/php file etc...)
-  - Ability to send additional params to server (csrf token / logged in user_name / etc`)
+  - Ability to send additional custom params to server (csrf token / logged in user_name / etc`)
   - Ability to embed any external html file inside the feedback_me widget for maximum customization
   - RTL support
   - All labels are customizable
