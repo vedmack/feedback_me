@@ -171,12 +171,6 @@
 				Default value:		undefined
 				Description:		Allows you to use any html file that you want, it will be placed inside feedback_me widget, in order to close the feedback_me widget
 									just call the followinog command: parent.fm.triggerAction(event); dont forget to pass the "event" from you onclick call to the triggerAction function
-* iframe_url				
-				Required:			false
-				Type:				String
-				Default value:		undefined
-				Description:		Allows you to use any html file that you want, it will be placed inside feedback_me widget, in order to close the feedback_me widget
-									just call the followinog command: parent.fm.triggerAction(event); dont forget to pass the "event" from you onclick call to the triggerAction function
 * show_form				
 				Required:			false
 				Type:				boolean
@@ -210,7 +204,7 @@ var fm = (function () {
 			animation_hide.marginRight = "-=380px";
 		}
 
-		if ($("#feedback_trigger").hasClass("feedback_trigger_clossed")) {
+		if ($("#feedback_trigger").hasClass("feedback_trigger_closed")) {
 			if (supportsTransitions === true) {
 				$("#feedback_trigger").removeClass("feedback_trigger_closed");
 				$("#feedback_content").removeClass("feedback_content_closed");
