@@ -98,7 +98,7 @@ Licensed under the MIT License (just like jQuery itself)
 
 
 =====
-If you are using this plugin it would be nice if you drop me an email to vedmack@gmail.com with some feedback.
+If you like my plugin, you can show your appreciation by following me in [Twitter](https://twitter.com/danielreznick) or [GitHub](https://github.com/vedmack).
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/b6da00ccf307b6c278c41ba942e9af7c "githalytics.com")](http://githalytics.com/vedmack/feedback_me)
 
