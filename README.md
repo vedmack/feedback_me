@@ -89,15 +89,18 @@ var default_options = {
 };
 ```
 
-License
+Social:
+=====
+If you like my plugin, you can show your appreciation by following me in [Twitter](https://twitter.com/danielreznick) / [GitHub](https://github.com/vedmack).
+
+
+License:
 =====
 
 Copyright 2013
 Licensed under the MIT License (just like jQuery itself)
 
 
-=====
-If you like my plugin, you can show your appreciation by following me in [Twitter](https://twitter.com/danielreznick) or [GitHub](https://github.com/vedmack).
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/b6da00ccf307b6c278c41ba942e9af7c "githalytics.com")](http://githalytics.com/vedmack/feedback_me)
 
