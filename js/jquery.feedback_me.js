@@ -171,6 +171,16 @@
 				Default value:		undefined
 				Description:		Allows you to use any html file that you want, it will be placed inside feedback_me widget, in order to close the feedback_me widget
 									just call the followinog command: parent.fm.triggerAction(event); dont forget to pass the "event" from you onclick call to the triggerAction function
+* show_form				
+				Required:			false
+				Type:				boolean
+				Default value:		true
+				Description:		Allows you to hide the form in the widget (and only show HTML code or iframe)
+* html				
+				Required:			false
+				Type:				String
+				Default value:		undefined
+				Description:		Allows you to use any html code that you want, it will be placed inside feedback_me widget
 *
 *
 */
@@ -395,8 +405,9 @@ var fm = (function () {
 							+ '<div class="feedback_title ' + jQueryUIClasses1 + jQueryUIClasses3 + '">'
 							+	'<span class="' + jQueryUIClasses4 + '">' + fm_options.title_label + '</span>'
 							+ '</div>'
-							+  form_html
+							+  (fm_options.show_form ? form_html : "")
 							+  iframe_html
+							+ (fm_options.html === undefined ? "" : fm_options.html)
 						+ '</div>');
 
 		if (fm_options.jQueryUI === true) {
@@ -535,7 +546,9 @@ var fm = (function () {
 			title_label : "Feedback",
 			trigger_label : "Feedback",
 			custom_params : {},
-			iframe_url : undefined
+			iframe_url : undefined,
+			show_form: true,
+			html: undefined
 		};
 
 		fm_options = $.extend(default_options, options);
