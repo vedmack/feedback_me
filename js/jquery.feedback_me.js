@@ -1,10 +1,11 @@
 /*global $, jQuery*/
+/*jslint plusplus: true*/
 /*
 *
 * jQuery Feedback Plugin
 * 
 * File:			jquery.feedback_me.js
-* Version:		0.4.7
+* Version:		0.4.6
 * Author:		Daniel Reznick
 * Info:			https://github.com/vedmack/feedback_me
 * Contact:		vedmack@gmail.com
@@ -169,18 +170,18 @@
 				Required:			false
 				Type:				String
 				Default value:		undefined
-				Description:		Allows you to use any html file that you want, it will be placed inside feedback_me widget, in order to close the feedback_me widget
-									just call the followinog command: parent.fm.triggerAction(event); dont forget to pass the "event" from you onclick call to the triggerAction function
+				Description:		Allows you to use any html file that you want, it will be placed inside feedback_me widget, (note that in order to close the feedback_me widget
+									just call the followinog command: parent.fm.triggerAction(event); dont forget to pass the "event" from you onclick call to the triggerAction function)
 * show_form				
 				Required:			false
 				Type:				boolean
 				Default value:		true
 				Description:		Allows you to hide the form in the widget (and only show HTML code or iframe)
-* html				
+* custom_html				
 				Required:			false
 				Type:				String
-				Default value:		undefined
-				Description:		Allows you to use any html code that you want, it will be placed inside feedback_me widget
+				Default value:		""
+				Description:		Allows you to use any inline html code that you want, it will be placed inside feedback_me widget
 *
 *
 */
@@ -273,7 +274,6 @@ var fm = (function () {
 
 	function checkRequiredFieldsOk() {
 		var $reqFields = $("[required]"),
-			$fm_form,
 			form_valid = true;
 
 		if ($reqFields.length > 0) {
@@ -407,7 +407,7 @@ var fm = (function () {
 							+ '</div>'
 							+  (fm_options.show_form ? form_html : "")
 							+  iframe_html
-							+ (fm_options.html === undefined ? "" : fm_options.html)
+							+  fm_options.custom_html
 						+ '</div>');
 
 		if (fm_options.jQueryUI === true) {
@@ -548,7 +548,7 @@ var fm = (function () {
 			custom_params : {},
 			iframe_url : undefined,
 			show_form: true,
-			html: undefined
+			custom_html: ""
 		};
 
 		fm_options = $.extend(default_options, options);
