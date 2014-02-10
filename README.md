@@ -7,6 +7,13 @@ Description:
 This jQuery plug-in allows user to easily add an animatable UI widget with a feedback form which slides from the side of the screen.
 
 
+Contact/Social:
+=====
+If you want to ask a question use my [google group](https://groups.google.com/forum/#!forum/daniels_code)
+
+If you like my plugin, you can show your appreciation by following me in [Twitter](https://twitter.com/danielreznick) / [GitHub](https://github.com/vedmack).
+
+
 Features:
 =====
 
@@ -88,10 +95,6 @@ var default_options = {
 	iframe_url : undefined
 };
 ```
-
-Social:
-=====
-If you like my plugin, you can show your appreciation by following me in [Twitter](https://twitter.com/danielreznick) / [GitHub](https://github.com/vedmack).
 
 
 License:
