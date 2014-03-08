@@ -1,5 +1,13 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.4.8
+
+* Added "custom_html" option to allow the use of inline html code that will be embeded inside feedback_me widget (thanks to miguelfontanes)
+* Added "show_form" option to allow the external iframe/inline html code to appear with the original form or replace it
+* CSS improvements colors / rounded coreners / trigger text location / etc...
+* API change , when using "iframe_url" you should fedback me form explicitly: set "show_form" to false (untill now the form was hidden implicitly by default) , same goes for "custom_html"
+
+
 ## 0.4.6
 
 * Remove jQuery UI dependencies (the only additional required library for the plugin is jQuery) https://github.com/vedmack/feedback_me/issues/14

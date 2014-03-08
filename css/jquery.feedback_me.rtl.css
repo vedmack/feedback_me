@@ -94,11 +94,11 @@
 }
 
 .fm_clean {
-	background-color: #F2F2F2;
+	background-color: #DDDDDD;
 }
 
 .fm_clean#feedback_trigger:hover{
-	background-color: #CCCCCC;
+	background-color: #AAAAAA;
 }
 
 .fm_clean button{
@@ -120,7 +120,7 @@
 }
 
 .fm_clean .feedback_trigger_text { 
-	left: -20px;
+	left: -25px;
 }
 
 .fm_clean .feedback_title {
@@ -137,6 +137,12 @@
 
 #feedback_content.fm_clean.left-top, #feedback_content.fm_clean.left-bottom{
     margin-left: 0px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-bottom-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-top-right-radius: 6px;
+	border-top-right-radius: 6px;
 }
  
 #feedback_trigger.fm_clean.feedback_trigger_closed.left-top, #feedback_trigger.fm_clean.feedback_trigger_closed.left-bottom{
@@ -145,6 +151,12 @@
  
 #feedback_trigger.fm_clean.left-top, #feedback_trigger.fm_clean.left-bottom{
     margin-left: 380px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-bottom-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-top-right-radius: 6px;
+	border-top-right-radius: 6px;
 }
 
 #feedback_content.fm_jquery.feedback_content_closed.left-top, #feedback_content.fm_jquery.feedback_content_closed.left-bottom {
@@ -236,7 +248,7 @@
 }
 
 .fm_bootstrap#feedback_trigger:hover{
-	background-color: #CCCCCC;
+	background-color: #AAAAAA;
 }
 
 .required_asterisk {
@@ -351,6 +363,12 @@
 
 #feedback_content.fm_clean.right-top, #feedback_content.fm_clean.right-bottom{
     margin-right: 0px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-bottom-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+	-webkit-border-top-left-radius: 6px;
+	-moz-border-top-left-radius: 6px;
+	border-top-left-radius: 6px;
 }
  
 #feedback_content.fm_jquery.feedback_content_closed.right-top, #feedback_content.fm_jquery.feedback_content_closed.right-bottom {
@@ -376,6 +394,12 @@
  
 #feedback_trigger.fm_clean.right-top, #feedback_trigger.fm_clean.right-bottom{
     margin-right: 380px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-bottom-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+	-webkit-border-top-left-radius: 6px;
+	-moz-border-top-left-radius: 6px;
+	border-top-left-radius: 6px;
 }
  
 #feedback_trigger.fm_jquery.feedback_trigger_closed.right-top, #feedback_trigger.fm_jquery.feedback_trigger_closed.right-bottom {

@@ -1,24 +1,26 @@
 /*global $, jQuery*/
 /*jslint plusplus: true*/
-/*
-*
-* jQuery Feedback Plugin
+
+/*!
+* jQuery Feedback Me Plugin
 * 
 * File:			jquery.feedback_me.js
-* Version:		0.4.6
-* Author:		Daniel Reznick
-* Info:			https://github.com/vedmack/feedback_me
-* Contact:		vedmack@gmail.com
-* Twitter:		https://twitter.com/danielreznick
+* Version:		0.4.8
+* 
+* Author:      Daniel Reznick
+* Info:        https://github.com/vedmack/yadcf
+* Contact:     vedmack@gmail.com
+* Twitter:	   @danielreznick
+* Q&A		   https://groups.google.com/forum/#!forum/daniels_code	
 * 
 * Copyright 2013 Daniel Reznick, all rights reserved.
-*
 * Copyright 2013 Licensed under the MIT License (just like jQuery itself)
 * 
 * This source file is distributed in the hope that it will be useful, but 
 * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
 * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
-* 
+*/
+/*
 * Parameters:
 *
 *					
@@ -171,7 +173,7 @@
 				Type:				String
 				Default value:		undefined
 				Description:		Allows you to use any html file that you want, it will be placed inside feedback_me widget, (note that in order to close the feedback_me widget
-									just call the followinog command: parent.fm.triggerAction(event); dont forget to pass the "event" from you onclick call to the triggerAction function)
+									just call the following command: parent.fm.triggerAction(event); don't forget to pass the "event" from you onclick call to the triggerAction function)
 * show_form				
 				Required:			false
 				Type:				boolean
@@ -379,7 +381,7 @@ var fm = (function () {
 			email_feedback_content_class = " email_present";
 		}
 
-		if (fm_options.iframe_url === undefined) {
+		if (fm_options.show_form === true) {
 			form_html = '<form id="feedback_me_form">'
 				+	'<ul>'
 				+		'<li>	<label for="feedback_name">' + fm_options.name_label + '</label> ' + name_asterisk + ' <input type="text" id="feedback_name" ' + name_required + ' placeholder="' + fm_options.name_placeholder + '"></input> </li>'
@@ -393,7 +395,8 @@ var fm = (function () {
 				+		'<li>	<button id="feedback_submit" type="submit" onclick="fm.sendFeedback(event);" class="' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
 				+	'</ul>'
 				+	'</form>';
-		} else {
+		}
+		if (fm_options.iframe_url !== undefined) {
 			iframe_html = '<iframe name="feedback_me_frame" id="feedback_me_frame" frameborder="0" src="' + fm_options.iframe_url + '"></iframe>';
 		}
 
@@ -405,7 +408,7 @@ var fm = (function () {
 							+ '<div class="feedback_title ' + jQueryUIClasses1 + jQueryUIClasses3 + '">'
 							+	'<span class="' + jQueryUIClasses4 + '">' + fm_options.title_label + '</span>'
 							+ '</div>'
-							+  (fm_options.show_form ? form_html : "")
+							+  form_html
 							+  iframe_html
 							+  fm_options.custom_html
 						+ '</div>');
@@ -426,6 +429,7 @@ var fm = (function () {
 		$('#feedback_me_form').submit(function (event) {
 			event.preventDefault();
 		});
+
 	}
 
 	function stopPropagation(evt) {

@@ -24,6 +24,7 @@ Features:
   - Using AJAX post to send data to server ('name', 'message' and 'email' parameters will be send to your servlet/php file etc...)
   - Ability to send additional custom params to server (csrf token / logged in user_name / etc`)
   - Ability to embed any external html file inside the feedback_me widget for maximum customization
+  - Ability to embed inline html code inside the feedback_me widget for more customizations
   - RTL support
   - All labels are customizable
   - Customizable placeholder (HTML5) for all input fields
@@ -43,7 +44,9 @@ Examples:
 
 [Bootstrap example](http://feedback-me.appspot.com/example_bootstrap.html)
 
-[External iframe example](http://feedback-me.appspot.com/example_external_iframe.html)
+[External IFrame Example](http://feedback-me.appspot.com/example_external_iframe.html)
+
+[Custom Html Example](http://feedback-me.appspot.com/example_custom_html.html)
 
 Usage:
 =====
@@ -92,7 +95,9 @@ var default_options = {
 	title_label : "Feedback",
 	trigger_label : "Feedback",
 	custom_params : {},
-	iframe_url : undefined
+	iframe_url : undefined,
+	show_form: true,
+	custom_html: ""
 };
 ```
 
