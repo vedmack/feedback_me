@@ -8,7 +8,7 @@
 * Version:		0.4.8
 * 
 * Author:      Daniel Reznick
-* Info:        https://github.com/vedmack/feedback_me
+* Info:        https://github.com/vedmack/feedback_me 
 * Contact:     vedmack@gmail.com
 * Twitter:	   @danielreznick
 * Q&A		   https://groups.google.com/forum/#!forum/daniels_code	
