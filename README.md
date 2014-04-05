@@ -18,6 +18,7 @@ Features:
 =====
 
   - Using CSS3 Transition for sliding out the feedback widget (jquery used as a fallback for older browsers)
+  - Multiple feedbacks on page (different locations)
   - Bootstrap support 
   - jQuery UI themes support
   - 4 different possible locations to place the widget
@@ -25,7 +26,7 @@ Features:
   - Ability to send additional custom params to server (csrf token / logged in user_name / etc`)
   - Ability to embed any external html file inside the feedback_me widget for maximum customization
   - Ability to embed inline html code inside the feedback_me widget for more customizations
-  - RTL support
+  - RTL support (except in 0.5.2 version)
   - All labels are customizable
   - Customizable placeholder (HTML5) for all input fields
   - Optional required attribute (HTML5) for all input fields with homegrown validation
@@ -47,6 +48,8 @@ Examples:
 [External IFrame Example](http://feedback-me.appspot.com/example_external_iframe.html)
 
 [Custom Html Example](http://feedback-me.appspot.com/example_custom_html.html)
+
+[Multiple Feedbacks Example](http://http://feedback-me.appspot.com/example_clean_multiple.html)
 
 Usage:
 =====

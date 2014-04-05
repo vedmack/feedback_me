@@ -1,5 +1,12 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.5.2
+
+* Added support for multiple feedbacks on page (https://github.com/vedmack/feedback_me/issues/19)
+* As part of the multiple feedback feature implementation ALL ids were replaced with classes (e.g #feedback_content is now .feedback_content)
+* Bug fix
+
+
 ## 0.4.8
 
 * Added "custom_html" option to allow the use of inline html code that will be embeded inside feedback_me widget (thanks to miguelfontanes)

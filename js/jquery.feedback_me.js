@@ -5,7 +5,7 @@
 * jQuery Feedback Me Plugin
 * 
 * File:			jquery.feedback_me.js
-* Version:		0.4.8
+* Version:		0.5.2
 * 
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me 
@@ -191,42 +191,72 @@ var fm = (function () {
 
 	'use strict';
 
-	var fm_options,
+	var fm_options_arr = {},
 		supportsTransitions = false;
+
+	function getFmOptions(event) {
+		var className,
+			selector;
+		if ($(event.target).closest(".feedback_trigger").length === 1) {
+			className = $(event.target).closest(".feedback_trigger")[0].className;
+		} else if ($(event.target).closest(".feedback_content").length === 1) {
+			className = $(event.target).closest(".feedback_content")[0].className;
+		}
+		if (className.indexOf('left-top') !== -1) {
+			selector = 'left-top';
+		} else if (className.indexOf('left-bottom') !== -1) {
+			selector = 'left-bottom';
+		} else if (className.indexOf('right-top') !== -1) {
+			selector = 'right-top';
+		} else if (className.indexOf('right-bottom') !== -1) {
+			selector = 'right-bottom';
+		}
+		return fm_options_arr[selector];
+	}
 
 	function triggerAction(event) {
 
 		var animation_show = {},
-			animation_hide = {};
+			animation_hide = {},
+			$fm_trigger,
+			$fm_content;
 
 		animation_show.marginLeft = "+=380px";
 		animation_hide.marginLeft = "-=380px";
 
-		if ($("body").attr("dir") === "rtl" || fm.getFmOptions().position.indexOf("right-") !== -1) {
+		if (fm.getFmOptions(event).position.indexOf("right-") !== -1) {
 			animation_show.marginRight = "+=380px";
 			animation_hide.marginRight = "-=380px";
 		}
 
-		if ($("#feedback_trigger").hasClass("feedback_trigger_closed")) {
+		$fm_trigger = $(event.target).closest(".feedback_trigger");
+		if ($fm_trigger.length === 1) {
+			$fm_content = $fm_trigger.next();
+		} else {
+			$fm_content = $(event.target).closest(".feedback_content");
+			$fm_trigger = $fm_content.prev();
+		}
+
+		if ($fm_trigger.hasClass("feedback_trigger_closed")) {
 			if (supportsTransitions === true) {
-				$("#feedback_trigger").removeClass("feedback_trigger_closed");
-				$("#feedback_content").removeClass("feedback_content_closed");
+				$fm_trigger.removeClass("feedback_trigger_closed");
+				$fm_content.removeClass("feedback_content_closed");
 			} else {
-				$("#feedback_trigger , #feedback_content").animate(
+				$fm_trigger.add($fm_content).animate(
 					animation_show,
 					150,
 					function () {
-						$("#feedback_trigger").removeClass("feedback_trigger_closed");
-						$("#feedback_content").removeClass("feedback_content_closed");
+						$fm_trigger.removeClass("feedback_trigger_closed");
+						$fm_content.removeClass("feedback_content_closed");
 					}
 				);
 			}
 		} else {
 			//first add the closed class so double (which will trigger closeFeedback function) click wont try to hide the form twice
-			$("#feedback_trigger").addClass("feedback_trigger_closed");
-			$("#feedback_content").addClass("feedback_content_closed");
+			$fm_trigger.addClass("feedback_trigger_closed");
+			$fm_content.addClass("feedback_content_closed");
 			if (supportsTransitions === false) {
-				$("#feedback_trigger , #feedback_content").animate(
+				$fm_trigger.add($fm_content).animate(
 					animation_hide,
 					150
 				);
@@ -236,23 +266,29 @@ var fm = (function () {
 
 	function closeFeedback(event) {
 
-		if ($("#feedback_content").hasClass("feedback_content_closed") || event.target.id === "feedback_content" || $(event.target).parents("div#feedback_content").length > 0) {
+		if (($(".feedback_content").length === 1 && $(".feedback_content").hasClass("feedback_content_closed")) ||
+				$(event.target).closest('.feedback_content').length === 1) {
 			return;
 		}
 
-		var animation_hide = {};
+		var animation_hide = {},
+			option;
 		animation_hide.marginLeft = "-=380px";
-		if ($("body").attr("dir") === "rtl" || fm.getFmOptions().position.indexOf("right-") !== -1) {
-			animation_hide.marginRight = "-=380px";
-		}
+		for (option in fm_options_arr) {
+			if (fm_options_arr.hasOwnProperty(option)) {
+				if (option.indexOf("right-") !== -1) {
+					animation_hide.marginRight = "-=380px";
+				}
 
-		$("#feedback_trigger").addClass("feedback_trigger_closed");
-		$("#feedback_content").addClass("feedback_content_closed");
-		if (supportsTransitions === false) {
-			$("#feedback_trigger , #feedback_content").animate(
-				animation_hide,
-				150
-			);
+				$(".feedback_trigger").addClass("feedback_trigger_closed");
+				$(".feedback_content").addClass("feedback_content_closed");
+				if (supportsTransitions === false) {
+					$(".feedback_trigger , .feedback_content").animate(
+						animation_hide,
+						150
+					);
+				}
+			}
 		}
 	}
 
@@ -261,25 +297,25 @@ var fm = (function () {
 		return (lastAtPos < (str.length - 1) && lastAtPos > 0 && str.indexOf('@@') === -1 && str.length > 2);
 	}
 
-	function validateFeedbackForm() {
-		if ((fm_options.name_required === true && $("#feedback_name").val() === "") ||
-				((fm_options.email_required === true && $("#feedback_email").val() === "") || (fm_options.email_required === true && emailValid($("#feedback_email").val()) === false)) ||
-				(fm_options.message_required === true && $("#feedback_message").val() === "") ||
-				(fm_options.radio_button_list_required === true && $("#feedback_me_form input[name=feedback_radio]:checked").val() === undefined)) {
+	function validateFeedbackForm(event) {
+		var $fm_content = $(event.target).closest(".feedback_content"),
+			fm_options = getFmOptions(event);
+		if ((fm_options.name_required === true && $fm_content.find(".feedback_name").val() === "") ||
+				((fm_options.email_required === true && $fm_content.find(".feedback_email").val() === "") || (fm_options.email_required === true && emailValid($fm_content.find(".feedback_email").val()) === false)) ||
+				(fm_options.message_required === true && $fm_content.find(".feedback_message").val() === "") ||
+				(fm_options.radio_button_list_required === true && $fm_content.find("input[name=feedback_radio]:checked").val() === undefined)) {
 			return false;
 		}
 		return true;
 
 	}
 
-
-
-	function checkRequiredFieldsOk() {
+	function checkRequiredFieldsOk(event) {
 		var $reqFields = $("[required]"),
 			form_valid = true;
 
 		if ($reqFields.length > 0) {
-			form_valid = validateFeedbackForm();
+			form_valid = validateFeedbackForm(event);
 		}
 		return form_valid;
 	}
@@ -299,7 +335,7 @@ var fm = (function () {
 		}
 	}
 
-	function appendFeedbackToBody() {
+	function appendFeedbackToBody(fm_options) {
 		var form_html = "",
 			iframe_html = "",
 			jQueryUIClasses1 = "",
@@ -350,25 +386,25 @@ var fm = (function () {
 		}
 
 		if (fm_options.show_radio_button_list === true) {
-			radio_button_list_html = "<li><div id=\"radio_button_list_title_wrapper\"><div id=\"radio_button_list_title\">" + fm_options.radio_button_list_title + radio_button_list_asterisk + "</div></div><div id=\"radio_button_list_wrapper\">";
+			radio_button_list_html = "<li><div class=\"radio_button_list_title_wrapper\"><div class=\"radio_button_list_title\">" + fm_options.radio_button_list_title + radio_button_list_asterisk + "</div></div><div class=\"radio_button_list_wrapper\">";
 			radio_button_list_html += "    <div class=\"radio_button_wrapper\">";
-			radio_button_list_html += "        <input value=\"1\" type=\"radio\" name=\"feedback_radio\" id=\"feedback_radio_1\" " + radio_button_list_required + "\/>";
+			radio_button_list_html += "        <input value=\"1\" type=\"radio\" name=\"feedback_radio\" class=\"feedback_radio_1\" " + radio_button_list_required + "\/>";
 			radio_button_list_html += "        <label for=\"feedback_radio_1\">" + fm_options.radio_button_list_labels[0] + "<\/label>";
 			radio_button_list_html += "    <\/div>";
 			radio_button_list_html += "    <div class=\"radio_button_wrapper\">";
-			radio_button_list_html += "        <input value=\"2\" type=\"radio\" name=\"feedback_radio\" id=\"feedback_radio_2\"\/>";
+			radio_button_list_html += "        <input value=\"2\" type=\"radio\" name=\"feedback_radio\" class=\"feedback_radio_2\"\/>";
 			radio_button_list_html += "        <label for=\"feedback_radio_2\">" + fm_options.radio_button_list_labels[1] + "<\/label>";
 			radio_button_list_html += "    <\/div>";
 			radio_button_list_html += "    <div class=\"radio_button_wrapper\">";
-			radio_button_list_html += "        <input value=\"3\" type=\"radio\" name=\"feedback_radio\" id=\"feedback_radio_3\"\/>";
+			radio_button_list_html += "        <input value=\"3\" type=\"radio\" name=\"feedback_radio\" class=\"feedback_radio_3\"\/>";
 			radio_button_list_html += "        <label for=\"feedback_radio_3\">" + fm_options.radio_button_list_labels[2] + "<\/label>";
 			radio_button_list_html += "    <\/div>";
 			radio_button_list_html += "    <div class=\"radio_button_wrapper\">";
-			radio_button_list_html += "        <input value=\"4\" type=\"radio\" name=\"feedback_radio\" id=\"feedback_radio_4\"\/>";
+			radio_button_list_html += "        <input value=\"4\" type=\"radio\" name=\"feedback_radio\" class=\"feedback_radio_4\"\/>";
 			radio_button_list_html += "        <label for=\"feedback_radio_4\">" + fm_options.radio_button_list_labels[3] + "<\/label>";
 			radio_button_list_html += "    <\/div>";
 			radio_button_list_html += "    <div class=\"radio_button_wrapper\">";
-			radio_button_list_html += "        <input value=\"5\" type=\"radio\" name=\"feedback_radio\" id=\"feedback_radio_5\"\/>";
+			radio_button_list_html += "        <input value=\"5\" type=\"radio\" name=\"feedback_radio\" class=\"feedback_radio_5\"\/>";
 			radio_button_list_html += "        <label for=\"feedback_radio_5\">" + fm_options.radio_button_list_labels[4] + "<\/label>";
 			radio_button_list_html += "    <\/div>";
 			radio_button_list_html += "<\/div></li>";
@@ -377,34 +413,34 @@ var fm = (function () {
 		}
 
 		if (fm_options.show_email === true) {
-			email_html = '<li>	<label for="feedback_email">' + fm_options.email_label + '</label> ' + email_asterisk + ' <input type="email" id="feedback_email" ' + email_required + ' placeholder="' + fm_options.email_placeholder + '"></input> </li>';
+			email_html = '<li>	<label for="feedback_email">' + fm_options.email_label + '</label> ' + email_asterisk + ' <input type="email" class="feedback_email" ' + email_required + ' placeholder="' + fm_options.email_placeholder + '"></input> </li>';
 			email_feedback_content_class = " email_present";
 		}
 
 		if (fm_options.show_form === true) {
-			form_html = '<form id="feedback_me_form">'
+			form_html = '<form class="feedback_me_form">'
 				+	'<ul>'
-				+		'<li>	<label for="feedback_name">' + fm_options.name_label + '</label> ' + name_asterisk + ' <input type="text" id="feedback_name" ' + name_required + ' placeholder="' + fm_options.name_placeholder + '"></input> </li>'
+				+		'<li>	<label for="feedback_name">' + fm_options.name_label + '</label> ' + name_asterisk + ' <input type="text" class="feedback_name" ' + name_required + ' placeholder="' + fm_options.name_placeholder + '"></input> </li>'
 
 				+		 email_html
 
-				+		'<li>	<label for="feedback_message">' + fm_options.message_label + '</label> ' + message_asterisk + ' <textarea rows="5" id="feedback_message" ' + message_required + ' placeholder="' + fm_options.message_placeholder + '"></textarea> </li>'
+				+		'<li>	<label for="feedback_message">' + fm_options.message_label + '</label> ' + message_asterisk + ' <textarea rows="5" class="feedback_message" ' + message_required + ' placeholder="' + fm_options.message_placeholder + '"></textarea> </li>'
 
 				+		 radio_button_list_html
 
-				+		'<li>	<button id="feedback_submit" type="submit" onclick="fm.sendFeedback(event);" class="' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
+				+		'<li>	<button type="submit" onclick="fm.sendFeedback(event);" class="feedback_submit ' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
 				+	'</ul>'
 				+	'</form>';
 		}
 		if (fm_options.iframe_url !== undefined) {
-			iframe_html = '<iframe name="feedback_me_frame" id="feedback_me_frame" frameborder="0" src="' + fm_options.iframe_url + '"></iframe>';
+			iframe_html = '<iframe name="feedback_me_frame" class="feedback_me_frame" frameborder="0" src="' + fm_options.iframe_url + '"></iframe>';
 		}
 
-		$('body').append('<div id="feedback_trigger" onclick="fm.stopPropagation(event);fm.triggerAction(event);" class="feedback_trigger_closed ' + fm_options.position + jQueryUIClasses1 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
+		$('body').append('<div onclick="fm.stopPropagation(event);fm.triggerAction(event);" class="feedback_trigger feedback_trigger_closed ' + fm_options.position + jQueryUIClasses1 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
 				+	'<span class="feedback_trigger_text">' + fm_options.trigger_label
 				+	'</span></div>');
 
-		$('body').append('<div id="feedback_content" class="feedback_content_closed ' + fm_options.position + email_feedback_content_class + radio_button_list_class + jQueryUIClasses2 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
+		$('body').append('<div class="feedback_content feedback_content_closed ' + fm_options.position + email_feedback_content_class + radio_button_list_class + jQueryUIClasses2 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
 							+ '<div class="feedback_title ' + jQueryUIClasses1 + jQueryUIClasses3 + '">'
 							+	'<span class="' + jQueryUIClasses4 + '">' + fm_options.title_label + '</span>'
 							+ '</div>'
@@ -414,7 +450,7 @@ var fm = (function () {
 						+ '</div>');
 
 		if (fm_options.jQueryUI === true) {
-			$('#feedback_submit').button({
+			$('.feedback_submit').button({
 				icons: {
 					primary: 'ui-icon-mail-closed'
 				}
@@ -426,7 +462,7 @@ var fm = (function () {
 		}
 
 		//prevent form submit (needed for validation)
-		$('#feedback_me_form').submit(function (event) {
+		$('.feedback_me_form').submit(function (event) {
 			event.preventDefault();
 		});
 
@@ -440,55 +476,65 @@ var fm = (function () {
 		}
 	}
 
-	function clearInputs() {
-		$("#feedback_name").val("");
-		$("#feedback_message").val("");
-		$("#feedback_email").val("");
-		$("#feedback_me_form input[name=feedback_radio]").prop('checked', false);
+	function clearInputs(event) {
+		var $fm_content = $(event.target).closest(".feedback_content");
+
+		$fm_content.find(".feedback_name").val("");
+		$fm_content.find(".feedback_message").val("");
+		$fm_content.find(".feedback_email").val("");
+		$fm_content.find(".feedback_me_form input[name=feedback_radio]").prop('checked', false);
 	}
 
 	function sendFeedback(event) {
-		var checkValid = checkRequiredFieldsOk(),
-			dataArray;
+		var checkValid = checkRequiredFieldsOk(event),
+			dataArray,
+			$fm_trigger,
+			$fm_content,
+			fm_options = getFmOptions(event);
+
 		if (checkValid === false) {
 			stopPropagation(event);
 			return;
 		}
+
+		$fm_content = $(event.target).closest(".feedback_content");
+		$fm_trigger = $(event.target).closest(".feedback_content").prev();
+
 		dataArray = {
-			name: $("#feedback_name").val(),
-			message: $("#feedback_message").val(),
-			email: $("#feedback_email").val(),
-			radio_list_value: $("#feedback_me_form input[name=feedback_radio]:checked").val()
+			name: $fm_content.find(".feedback_name").val(),
+			message: $fm_content.find(".feedback_message").val(),
+			email: $fm_content.find(".feedback_email").val(),
+			radio_list_value: $fm_content.find(".feedback_me_form input[name=feedback_radio]:checked").val()
 		};
 
-		dataArray = $.extend(fm.getFmOptions().custom_params, dataArray);
+		dataArray = $.extend(fm_options.custom_params, dataArray);
 
 		$.ajax({
 			type: 'POST',
-			url: fm.getFmOptions().feedback_url,
+			url: fm_options.feedback_url,
 			data: dataArray,
 			beforeSend: function (xhr) {
 				var animation_hide = {};
 				animation_hide.marginLeft = "-=380px";
-				if ($("body").attr("dir") === "rtl" || fm.getFmOptions().position.indexOf("right-") !== -1) {
+				if (fm_options.position.indexOf("right-") !== -1) {
 					animation_hide.marginRight = "-=380px";
 				}
 
 				if (supportsTransitions === true) {
-					$("#feedback_trigger").addClass("feedback_trigger_closed");
-					$("#feedback_content").addClass("feedback_content_closed");
+					$fm_trigger.addClass("feedback_trigger_closed");
+					$fm_content.addClass("feedback_content_closed");
 				} else {
-					$("#feedback_trigger , #feedback_content").animate(
+					$fm_trigger.add($fm_content).animate(
 						animation_hide,
 						150,
 						function () {
-							$("#feedback_trigger").addClass("feedback_trigger_closed");
+							$fm_trigger.addClass("feedback_trigger_closed");
 						}
 					);
 				}
 			},
 			success: function (data) {
-				fm.clearInputs();
+				fm.clearInputs(event);
             },
 			error: function (ob, errStr) {
 				alert("Failed to send feedback (please double check your feedback_url parameter)");
@@ -517,10 +563,6 @@ var fm = (function () {
 		}
 		supportsTransitions = false;
 		return;
-	}
-
-	function getFmOptions() {
-		return fm_options;
 	}
 
 	function init(options) {
@@ -553,13 +595,16 @@ var fm = (function () {
 			iframe_url : undefined,
 			show_form: true,
 			custom_html: ""
-		};
+		},
+			tmp_options;
 
-		fm_options = $.extend(default_options, options);
+		tmp_options = $.extend(default_options, options);
 
-		appendFeedbackToBody();
+		fm_options_arr[tmp_options.position] = tmp_options;
 
-		detectTransitionSupport();
+		appendFeedbackToBody(tmp_options);
+
+		detectTransitionSupport(tmp_options);
 	}
 
     return {
