@@ -66,6 +66,7 @@
 .feedback_message {
 	display: block;
 	width: 340px;
+	resize: none;
 }
 
 .feedback_submit {
