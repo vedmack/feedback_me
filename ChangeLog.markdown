@@ -2,7 +2,7 @@
 
 ## 0.5.5
 
-* Added growl alike and super customizable dialog response for success/fail feedback sending (https://github.com/vedmack/feedback_me/issues/21)
+* Added highly customizable notification response for success/fail feedback sending (https://github.com/vedmack/feedback_me/issues/21)
 * Bug fix (https://github.com/vedmack/feedback_me/issues/24)
 
 
