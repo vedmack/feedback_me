@@ -5,7 +5,7 @@
 * jQuery Feedback Me Plugin
 * 
 * File:			jquery.feedback_me.js
-* Version:		0.5.2
+* Version:		0.5.5
 * 
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me 
@@ -165,7 +165,7 @@
 				
 * custom_params				
 				Required:			false
-				Type:				associative array
+				Type:				object
 				Default value:		{}
 				Description:		Use it if you want to send additional data to the server (can be used for sending: csrf token / logged in user_name / etc`)
 * iframe_url				
@@ -184,6 +184,26 @@
 				Type:				String
 				Default value:		""
 				Description:		Allows you to use any inline html code that you want, it will be placed inside feedback_me widget
+* delayed_close 
+				Required:			false
+				Type:				boolean
+				Default value:		true
+				Description:		Enable feedback dialog upon feedback sending, a small dialog will be displayed with	appropriate message in the middle
+									of the screen and then fade out (read more about the delayed_options property)
+* delayed_options
+				Required:			false
+				Type:				object
+				Default value:
+									{
+										delay_success_milliseconds : 2000,
+										delay_fail_milliseconds : 2000,
+										sending : "Sending...", //This text will appear on the "send" button while sending
+										send_fail : "Sending failed.", //This text will appear on the fail dialog
+										send_success : "Feedack sent.", //This text will appear on the success dialog
+										fail_color : undefined,
+										success_color : undefined
+									}
+				Description:		Allow to customize the feedback dialog upon feedback sending
 *
 *
 */
@@ -194,14 +214,20 @@ var fm = (function () {
 	var fm_options_arr = {},
 		supportsTransitions = false;
 
-	function getFmOptions(event) {
+	function getFmOptions(event, position) {
 		var className,
 			selector;
 		if ($(event.target).closest(".feedback_trigger").length === 1) {
 			className = $(event.target).closest(".feedback_trigger")[0].className;
 		} else if ($(event.target).closest(".feedback_content").length === 1) {
 			className = $(event.target).closest(".feedback_content")[0].className;
+		} else {
+			if (position === undefined) {
+				position = 'left-top';
+			}
+			className = position;
 		}
+
 		if (className.indexOf('left-top') !== -1) {
 			selector = 'left-top';
 		} else if (className.indexOf('left-bottom') !== -1) {
@@ -214,7 +240,7 @@ var fm = (function () {
 		return fm_options_arr[selector];
 	}
 
-	function triggerAction(event) {
+	function triggerAction(event, position) {
 
 		var animation_show = {},
 			animation_hide = {},
@@ -224,7 +250,7 @@ var fm = (function () {
 		animation_show.marginLeft = "+=380px";
 		animation_hide.marginLeft = "-=380px";
 
-		if (fm.getFmOptions(event).position.indexOf("right-") !== -1) {
+		if (fm.getFmOptions(event, position).position.indexOf("right-") !== -1) {
 			animation_show.marginRight = "+=380px";
 			animation_hide.marginRight = "-=380px";
 		}
@@ -234,6 +260,13 @@ var fm = (function () {
 			$fm_content = $fm_trigger.next();
 		} else {
 			$fm_content = $(event.target).closest(".feedback_content");
+			$fm_trigger = $fm_content.prev();
+		}
+		if ($fm_content.length === 0 || $fm_trigger.length === 0) {
+			if (position === undefined) {
+				position = 'left-top';
+			}
+			$fm_content = $('.' + position).closest(".feedback_content");
 			$fm_trigger = $fm_content.prev();
 		}
 
@@ -476,6 +509,26 @@ var fm = (function () {
 		}
 	}
 
+	function slideBack(fm_options, $fm_trigger, $fm_content) {
+		var animation_hide = {};
+		animation_hide.marginLeft = "-=380px";
+		if (fm_options.position.indexOf("right-") !== -1) {
+			animation_hide.marginRight = "-=380px";
+		}
+
+		if (supportsTransitions === true) {
+			$fm_trigger.addClass("feedback_trigger_closed");
+			$fm_content.addClass("feedback_content_closed");
+		} else {
+			$fm_trigger.add($fm_content).animate(
+				animation_hide,
+				150,
+				function () {
+					$fm_trigger.addClass("feedback_trigger_closed");
+				}
+			);
+		}
+	}
 	function clearInputs(event) {
 		var $fm_content = $(event.target).closest(".feedback_content");
 
@@ -500,6 +553,10 @@ var fm = (function () {
 		$fm_content = $(event.target).closest(".feedback_content");
 		$fm_trigger = $(event.target).closest(".feedback_content").prev();
 
+		if (fm_options.delayed_close === true) {
+			$fm_content.find('.feedback_submit').text(fm_options.delayed_options.sending);
+		}
+
 		dataArray = {
 			name: $fm_content.find(".feedback_name").val(),
 			message: $fm_content.find(".feedback_message").val(),
@@ -514,32 +571,43 @@ var fm = (function () {
 			url: fm_options.feedback_url,
 			data: dataArray,
 			beforeSend: function (xhr) {
-				var animation_hide = {};
-				animation_hide.marginLeft = "-=380px";
-				if (fm_options.position.indexOf("right-") !== -1) {
-					animation_hide.marginRight = "-=380px";
-				}
-
-				if (supportsTransitions === true) {
-					$fm_trigger.addClass("feedback_trigger_closed");
-					$fm_content.addClass("feedback_content_closed");
-				} else {
-					$fm_trigger.add($fm_content).animate(
-						animation_hide,
-						150,
-						function () {
-							$fm_trigger.addClass("feedback_trigger_closed");
-						}
-					);
+				if (fm_options.delayed_close === false) {
+					slideBack(fm_options, $fm_trigger, $fm_content);
 				}
 			},
 			success: function (data) {
+				var st = "";
 				fm.clearInputs(event);
+				if (fm_options.delayed_close === true) {
+					if (fm_options.delayed_options.success_color !== undefined) {
+						st = ' style="background-color:' + fm_options.delayed_options.success_color + '" ';
+					}
+					$fm_content.find('.feedback_submit').text(fm_options.submit_label);
+					slideBack(fm_options, $fm_trigger, $fm_content);
+					$("body").append('<div ' + st + ' class="feedback-delayed-dlg success" onclick="fm.stopPropagation(event);"><span class="feedback-dlg-close" onclick="fm.closeFeedbackDelayedDlg();">X</span><span class="feedback-sucess-message">' +
+						'<span class="feedback-sucess-fail-message-inner"><span>' + fm_options.delayed_options.send_success + '</span></span></span></div>');
+					setTimeout(function () {$(".feedback-delayed-dlg").fadeOut(function () { $(this).remove(); }); }, fm_options.delayed_options.delay_success_milliseconds);
+				}
             },
 			error: function (ob, errStr) {
-				alert("Failed to send feedback (please double check your feedback_url parameter)");
+				var st = "";
+				if (fm_options.delayed_close === true) {
+					if (fm_options.delayed_options.fail_color !== undefined) {
+						st = ' style="background-color:' + fm_options.delayed_options.fail_color + '" ';
+					}
+					$fm_content.find('.feedback_submit').text(fm_options.submit_label);
+					$("body").append('<div ' + st + ' class="feedback-delayed-dlg fail" onclick="fm.stopPropagation(event);"><span class="feedback-dlg-close" onclick="fm.closeFeedbackDelayedDlg();">X</span><span class="feedback-fail-message">' +
+						'<span class="feedback-sucess-fail-message-inner"><span>' + fm_options.delayed_options.send_fail + '</span></span></span></div>');
+					setTimeout(function () {$(".feedback-delayed-dlg").fadeOut(function () { $(this).remove(); }); }, fm_options.delayed_options.delay_fail_milliseconds);
+				} else {
+					console.log("Failed to send feedback (please double check your feedback_url parameter)");
+				}
 			}
 		});
+	}
+
+	function closeFeedbackDelayedDlg() {
+		$(".feedback-delayed-dlg").fadeOut();
 	}
 
 	function detectTransitionSupport() {
@@ -594,11 +662,25 @@ var fm = (function () {
 			custom_params : {},
 			iframe_url : undefined,
 			show_form: true,
-			custom_html: ""
+			custom_html : "",
+			delayed_close : true,
+			delayed_options : {
+				delay_success_milliseconds : 2000,
+				delay_fail_milliseconds : 2000,
+				sending : "Sending...",
+				send_fail : "Sending failed.",
+				send_success : "Feedack sent.",
+				fail_color : undefined,
+				success_color : undefined
+			}
 		},
-			tmp_options;
+			tmp_options,
+			tmp_delayed_options;
+
+		tmp_delayed_options = $.extend(default_options.delayed_options, options.delayed_options);
 
 		tmp_options = $.extend(default_options, options);
+		tmp_options.delayed_options = tmp_delayed_options;
 
 		fm_options_arr[tmp_options.position] = tmp_options;
 
@@ -613,7 +695,8 @@ var fm = (function () {
 		getFmOptions : getFmOptions,
 		triggerAction : triggerAction,
 		stopPropagation : stopPropagation,
-		clearInputs : clearInputs
+		clearInputs : clearInputs,
+		closeFeedbackDelayedDlg : closeFeedbackDelayedDlg
     };
 
 }());

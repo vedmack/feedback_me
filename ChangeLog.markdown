@@ -1,5 +1,11 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.5.5
+
+* Added growl alike and super customizable dialog response for success/fail feedback sending (https://github.com/vedmack/feedback_me/issues/21)
+* Bug fix (https://github.com/vedmack/feedback_me/issues/24)
+
+
 ## 0.5.2
 
 * Added support for multiple feedbacks on page (https://github.com/vedmack/feedback_me/issues/19)

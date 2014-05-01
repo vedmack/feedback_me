@@ -19,6 +19,7 @@ Features:
 
   - Using CSS3 Transition for sliding out the feedback widget (jquery used as a fallback for older browsers)
   - Multiple feedbacks on page (different locations)
+  - Growl alike and super customizable dialog response for success/fail feedback sending 
   - Bootstrap support 
   - jQuery UI themes support
   - 4 different possible locations to place the widget
@@ -100,7 +101,17 @@ var default_options = {
 	custom_params : {},
 	iframe_url : undefined,
 	show_form: true,
-	custom_html: ""
+	custom_html: "",
+	delayed_close : true,
+	delayed_options : {
+		delay_success_milliseconds : 2000,
+		delay_fail_milliseconds : 2000,
+		sending : "Sending...",
+		send_fail : "Sending failed.",
+		send_success : "Feedack sent.",
+		fail_color : undefined,
+		success_color : undefined
+	}
 };
 ```
 
