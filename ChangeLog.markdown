@@ -95,3 +95,9 @@
 
 * Added close_on_click_outisde option (default is false)
 * Several code enhancements
+
+- [ ] a task list item
+- [ ] list syntax required
+- [ ] normal **formatting**, @mentions, #1234 refs
+- [ ] incomplete
+- [x] completed
