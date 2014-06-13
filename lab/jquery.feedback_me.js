@@ -5,7 +5,7 @@
 * jQuery Feedback Me Plugin
 * 
 * File:			jquery.feedback_me.js
-* Version:		0.5.6.beta2
+* Version:		0.5.6.beta.2
 * 
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me 
