@@ -5,7 +5,7 @@
 * jQuery Feedback Me Plugin
 * 
 * File:			jquery.feedback_me.js
-* Version:		0.5.6.lab
+* Version:		0.5.6.beta2
 * 
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me 
@@ -127,6 +127,12 @@
 				Default value:		""
 				Description:		Watermark for message input
 
+* name_pattern				
+				Required:			false
+				Type:				String
+				Default value:		""
+				Description:		Set name input pattern, you must escape your '\' chars (\ ---> \\)
+
 * name_required
 				Required:			false
 				Type:				boolean
@@ -157,7 +163,7 @@
 				Default value:		false
 				Description:		Add an asterisk to the label of the required inputs
 
-* close_on_click_outisde				
+* close_on_click_outside				
 				Required:			false
 				Type:				boolean
 				Default value:		true
@@ -285,9 +291,6 @@ var fm = (function ($) {
 					}
 				);
 			}
-			if (fm.getFmOptions(event, position).feedback_open_callback !== undefined) {
-				fm.getFmOptions(event, position).feedback_open_callback();
-			}
 		} else {
 			//first add the closed class so double (which will trigger closeFeedback function) click wont try to hide the form twice
 			$fm_trigger.addClass("feedback_trigger_closed");
@@ -334,9 +337,9 @@ var fm = (function ($) {
 		return (lastAtPos < (str.length - 1) && lastAtPos > 0 && str.indexOf('@@') === -1 && str.length > 2);
 	}
 
-	function validateFeedbackForm(event) {
+	function validateFeedbackForm(event, position) {
 		var $fm_content = $(event.target).closest(".feedback_content"),
-			fm_options = getFmOptions(event);
+			fm_options = getFmOptions(event, position);
 		if ((fm_options.name_required === true && $fm_content.find(".feedback_name").val() === "") ||
 				((fm_options.email_required === true && $fm_content.find(".feedback_email").val() === "") || (fm_options.email_required === true && emailValid($fm_content.find(".feedback_email").val()) === false)) ||
 				(fm_options.message_required === true && $fm_content.find(".feedback_message").val() === "") ||
@@ -347,12 +350,28 @@ var fm = (function ($) {
 
 	}
 
-	function checkRequiredFieldsOk(event) {
-		var $reqFields = $("[required]"),
+	function checkPatternFieldsOk(event, position) {
+		var $patternFields = $("." + position + " [pattern]"),
+			form_valid = true,
+			i;
+
+		if ($patternFields.length > 0) {
+			for (i = 0; i < $patternFields.length; i++) {
+				form_valid = !$patternFields[i].validity.patternMismatch;
+				if (form_valid === false) {
+					break;
+				}
+			}
+		}
+		return form_valid;
+	}
+
+	function checkRequiredFieldsOk(event, position) {
+		var $reqFields = $("." + position + " [required]"),
 			form_valid = true;
 
 		if ($reqFields.length > 0) {
-			form_valid = validateFeedbackForm(event);
+			form_valid = validateFeedbackForm(event, position);
 		}
 		return form_valid;
 	}
@@ -388,6 +407,8 @@ var fm = (function ($) {
 			bootstrap_class = "",
 			bootstrap_btn = "",
 			bootstrap_hero_unit = "",
+
+			name_pattern = fm_options.name_pattern === "" ? "" : "pattern=\"" + fm_options.name_pattern + "\"",
 
 			name_required = fm_options.name_required ? "required" : "",
 			email_required = fm_options.email_required ? "required" : "",
@@ -457,7 +478,7 @@ var fm = (function ($) {
 		if (fm_options.show_form === true) {
 			form_html = '<form class="feedback_me_form">'
 				+	'<ul>'
-				+		'<li>	<label for="feedback_name">' + fm_options.name_label + '</label> ' + name_asterisk + ' <input type="text" class="feedback_name" ' + name_required + ' placeholder="' + fm_options.name_placeholder + '"></input> </li>'
+				+		'<li>	<label for="feedback_name">' + fm_options.name_label + '</label> ' + name_asterisk + ' <input type="text" class="feedback_name" ' + name_required + ' placeholder="' + fm_options.name_placeholder + '" ' + name_pattern + '></input> </li>'
 
 				+		 email_html
 
@@ -465,7 +486,7 @@ var fm = (function ($) {
 
 				+		 radio_button_list_html
 
-				+		'<li>	<button type="submit" onclick="fm.sendFeedback(event);" class="feedback_submit ' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
+				+		'<li>	<button type="submit" onclick="fm.sendFeedback(event,\'' + fm_options.position + '\');" class="feedback_submit ' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
 				+	'</ul>'
 				+	'</form>';
 		}
@@ -494,7 +515,7 @@ var fm = (function ($) {
 			});
 		}
 
-		if (fm_options.close_on_click_outisde === true) {
+		if (fm_options.close_on_click_outside === true) {
 			applyCloseOnClickOutside();
 		}
 
@@ -542,14 +563,15 @@ var fm = (function ($) {
 		$fm_content.find(".feedback_me_form input[name=feedback_radio]").prop('checked', false);
 	}
 
-	function sendFeedback(event) {
-		var checkValid = checkRequiredFieldsOk(event),
+	function sendFeedback(event, position) {
+		var checkValid = checkRequiredFieldsOk(event, position),
+			checkPattern = checkPatternFieldsOk(event, position),
 			dataArray,
 			$fm_trigger,
 			$fm_content,
-			fm_options = getFmOptions(event);
+			fm_options = getFmOptions(event, position);
 
-		if (checkValid === false) {
+		if (checkValid === false || checkPattern === false) {
 			stopPropagation(event);
 			return;
 		}
@@ -646,7 +668,7 @@ var fm = (function ($) {
 			bootstrap : false,
 			show_email : false,
 			show_radio_button_list : false,
-			close_on_click_outisde: true,
+			close_on_click_outside: true,
 			name_label : "Name",
 			email_label : "Email",
 			message_label : "Message",
@@ -655,6 +677,7 @@ var fm = (function ($) {
 			name_placeholder : "",
 			email_placeholder : "",
 			message_placeholder : "",
+			name_pattern : "",
 			name_required : false,
 			email_required : false,
 			message_required : false,
@@ -676,8 +699,7 @@ var fm = (function ($) {
 				send_success : "Feedack sent.",
 				fail_color : undefined,
 				success_color : undefined
-			},
-			feedback_open_callback : undefined
+			}
 		},
 			tmp_options,
 			tmp_delayed_options;
