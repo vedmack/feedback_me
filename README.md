@@ -32,6 +32,7 @@ Features:
   - Customizable placeholder (HTML5) for all input fields
   - Optional required attribute (HTML5) for all input fields with homegrown validation
   - Optional asterisk next to label of required input fields
+  - Optional pattern attribute (HTML5) for name input field  with homegrown validation
   
 
 

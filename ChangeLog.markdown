@@ -1,5 +1,12 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+
+## 0.5.6
+
+* Customizable pattern attribute: "name_pattern" for name input (https://github.com/vedmack/feedback_me/issues/27)
+* Allow jQuery.noConflict (https://github.com/vedmack/feedback_me/issues/25)
+* Minor fix (https://github.com/vedmack/feedback_me/issues/26)
+
 ## 0.5.5
 
 * Added highly customizable notification response for success/fail feedback sending (https://github.com/vedmack/feedback_me/issues/21)
