@@ -658,7 +658,7 @@ var fm = (function ($) {
 		$(".feedback-delayed-dlg").fadeOut();
 	}
 
-	function detectTransitionSupport() {/*
+	function detectTransitionSupport() {
 		var be = document.body || document.documentElement,
 			style = be.style,
 			p = 'transition',
@@ -676,7 +676,7 @@ var fm = (function ($) {
 				supportsTransitions = true;
 				return;
 			}
-		}*/
+		}
 		supportsTransitions = false;
 		return;
 	}
