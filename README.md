@@ -120,10 +120,5 @@ var default_options = {
 License:
 =====
 
-Copyright 2013
-Licensed under the MIT License (just like jQuery itself)
-
-
-
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/b6da00ccf307b6c278c41ba942e9af7c "githalytics.com")](http://githalytics.com/vedmack/feedback_me)
+Copyright (c) 2014 Daniel Reznick, released under the MIT license
 
