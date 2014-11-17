@@ -5,7 +5,7 @@
 * jQuery Feedback Me Plugin
 * 
 * File:			jquery.feedback_me.js
-* Version:		0.5.7.beta.3
+* Version:		0.5.7.beta.4
 * 
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me 
@@ -13,8 +13,7 @@
 * Twitter:	   @danielreznick
 * Q&A		   https://groups.google.com/forum/#!forum/daniels_code	
 * 
-* Copyright 2013 Daniel Reznick, all rights reserved.
-* Copyright 2013 Licensed under the MIT License (just like jQuery itself)
+* Copyright (c) 2014 Daniel Reznick, all rights reserved. released under the MIT license
 * 
 * This source file is distributed in the hope that it will be useful, but 
 * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
@@ -232,10 +231,10 @@ var fm = (function ($) {
 		var className,
 			selector;
 		event = eventTargetFixUp(event);
-		if ($(event).closest(".feedback_trigger").length === 1) {
-			className = $(event).closest(".feedback_trigger")[0].className;
-		} else if ($(event).closest(".feedback_content").length === 1) {
-			className = $(event).closest(".feedback_content")[0].className;
+		if ($(event.target).closest(".feedback_trigger").length === 1) {
+			className = $(event.target).closest(".feedback_trigger")[0].className;
+		} else if ($(event.target).closest(".feedback_content").length === 1) {
+			className = $(event.target).closest(".feedback_content")[0].className;
 		} else {
 			if (position === undefined) {
 				position = 'left-top';
@@ -271,11 +270,11 @@ var fm = (function ($) {
 			animation_hide.marginRight = "-=380px";
 		}
 
-		$fm_trigger = $(event).closest(".feedback_trigger");
+		$fm_trigger = $(event.target).closest(".feedback_trigger");
 		if ($fm_trigger.length === 1) {
 			$fm_content = $fm_trigger.next();
 		} else {
-			$fm_content = $(event).closest(".feedback_content");
+			$fm_content = $(event.target).closest(".feedback_content");
 			$fm_trigger = $fm_content.prev();
 		}
 		if ($fm_content.length === 0 || $fm_trigger.length === 0) {
@@ -316,7 +315,7 @@ var fm = (function ($) {
 	function closeFeedback(event) {
 		event = eventTargetFixUp(event);
 		if (($(".feedback_content").length === 1 && $(".feedback_content").hasClass("feedback_content_closed")) ||
-				$(event).closest('.feedback_content').length === 1) {
+				$(event.target).closest('.feedback_content').length === 1) {
 			return;
 		}
 
@@ -370,7 +369,7 @@ var fm = (function ($) {
 
 	function validateFeedbackForm(event, position) {
 		event = eventTargetFixUp(event);
-		var $fm_content = $(event).closest(".feedback_content"),
+		var $fm_content = $(event.target).closest(".feedback_content"),
 			fm_options = getFmOptions(event, position);
 		if ((fm_options.name_required === true && $fm_content.find(".feedback_name").val() === "") ||
 				((fm_options.email_required === true && $fm_content.find(".feedback_email").val() === "") || (fm_options.email_required === true && emailValid($fm_content.find(".feedback_email").val()) === false)) ||
@@ -588,7 +587,7 @@ var fm = (function ($) {
 	}
 	function clearInputs(event) {
 		event = eventTargetFixUp(event);
-		var $fm_content = $(event).closest(".feedback_content");
+		var $fm_content = $(event.target).closest(".feedback_content");
 
 		$fm_content.find(".feedback_name").val("");
 		$fm_content.find(".feedback_message").val("");
@@ -610,8 +609,8 @@ var fm = (function ($) {
 			return;
 		}
 
-		$fm_content = $(event).closest(".feedback_content");
-		$fm_trigger = $(event).closest(".feedback_content").prev();
+		$fm_content = $(event.target).closest(".feedback_content");
+		$fm_trigger = $(event.target).closest(".feedback_content").prev();
 
 		if (fm_options.delayed_close === true) {
 			$fm_content.find('.feedback_submit').text(fm_options.delayed_options.sending);
