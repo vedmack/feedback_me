@@ -4,14 +4,14 @@
 /*!
 * jQuery Feedback Me Plugin
 * 
-* File:			jquery.feedback_me.js
-* Version:		0.5.7.beta.4
+* File:        jquery.feedback_me.js
+* Version:     0.5.7.beta.4
 * 
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me 
 * Contact:     vedmack@gmail.com
-* Twitter:	   @danielreznick
-* Q&A		   https://groups.google.com/forum/#!forum/daniels_code	
+* Twitter:     @danielreznick
+* Q&A:         https://groups.google.com/forum/#!forum/daniels_code	
 * 
 * Copyright (c) 2014 Daniel Reznick, all rights reserved. released under the MIT license
 * 
