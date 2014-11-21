@@ -1,6 +1,13 @@
 # jQuery Feedback Me Plugin ChangeLog
 
 
+## 0.5.7
+
+* IE8 Support
+* Improved the Multiple feedbacks mode
+* Bugs fix
+
+
 ## 0.5.6
 
 * Customizable pattern attribute: "name_pattern" for name input (https://github.com/vedmack/feedback_me/issues/27)

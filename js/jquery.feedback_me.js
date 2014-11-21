@@ -4,17 +4,16 @@
 /*!
 * jQuery Feedback Me Plugin
 * 
-* File:			jquery.feedback_me.js
-* Version:		0.5.6
+* File:        jquery.feedback_me.js
+* Version:     0.5.7
 * 
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me 
 * Contact:     vedmack@gmail.com
-* Twitter:	   @danielreznick
-* Q&A		   https://groups.google.com/forum/#!forum/daniels_code	
+* Twitter:     @danielreznick
+* Q&A:         https://groups.google.com/forum/#!forum/daniels_code	
 * 
-* Copyright 2013 Daniel Reznick, all rights reserved.
-* Copyright 2013 Licensed under the MIT License (just like jQuery itself)
+* Copyright (c) 2014 Daniel Reznick, all rights reserved. released under the MIT license
 * 
 * This source file is distributed in the hope that it will be useful, but 
 * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
@@ -221,9 +220,17 @@ var fm = (function ($) {
 	var fm_options_arr = {},
 		supportsTransitions = false;
 
+	function eventTargetFixUp(pEvent) {
+		if (pEvent.target === undefined) {
+            pEvent.target = pEvent.srcElement;
+        }
+		return pEvent;
+	}
+
 	function getFmOptions(event, position) {
 		var className,
 			selector;
+		event = eventTargetFixUp(event);
 		if ($(event.target).closest(".feedback_trigger").length === 1) {
 			className = $(event.target).closest(".feedback_trigger")[0].className;
 		} else if ($(event.target).closest(".feedback_content").length === 1) {
@@ -254,6 +261,7 @@ var fm = (function ($) {
 			$fm_trigger,
 			$fm_content;
 
+		event = eventTargetFixUp(event);
 		animation_show.marginLeft = "+=380px";
 		animation_hide.marginLeft = "-=380px";
 
@@ -305,28 +313,50 @@ var fm = (function ($) {
 	}
 
 	function closeFeedback(event) {
-
+		event = eventTargetFixUp(event);
 		if (($(".feedback_content").length === 1 && $(".feedback_content").hasClass("feedback_content_closed")) ||
 				$(event.target).closest('.feedback_content').length === 1) {
 			return;
 		}
 
 		var animation_hide = {},
-			option;
-		animation_hide.marginLeft = "-=380px";
+			option,
+			$fm_trigger,
+			$fm_content;
+
 		for (option in fm_options_arr) {
 			if (fm_options_arr.hasOwnProperty(option)) {
-				if (option.indexOf("right-") !== -1) {
-					animation_hide.marginRight = "-=380px";
-				}
 
-				$(".feedback_trigger").addClass("feedback_trigger_closed");
-				$(".feedback_content").addClass("feedback_content_closed");
-				if (supportsTransitions === false) {
-					$(".feedback_trigger , .feedback_content").animate(
-						animation_hide,
-						150
-					);
+				$fm_content = $('.' + option).closest(".feedback_content");
+				$fm_trigger = $fm_content.prev();
+
+				if (!$fm_trigger.hasClass("feedback_trigger_closed")) {
+					if (supportsTransitions === true) {
+						$fm_trigger.addClass("feedback_trigger_closed");
+						$fm_content.addClass("feedback_content_closed");
+					} else {
+						if (option.indexOf("left-") !== -1) {
+							animation_hide.marginLeft = "-=380px";
+						} else {
+							animation_hide.marginRight = "-=380px";
+						}
+						if (!$fm_trigger.hasClass("feedback_kurama")) {
+							$fm_trigger.addClass("feedback_kurama");
+							$fm_trigger.add($fm_content).animate(
+								animation_hide,
+								150,
+								function () {
+									var $fm_trigger,
+										$fm_content;
+									$fm_trigger = $(this);
+									$fm_content = $fm_trigger.next();
+									$fm_trigger.removeClass("feedback_kurama");
+									$fm_trigger.addClass("feedback_trigger_closed");
+									$fm_content.addClass("feedback_content_closed");
+								}
+							);
+						}
+					}
 				}
 			}
 		}
@@ -338,6 +368,7 @@ var fm = (function ($) {
 	}
 
 	function validateFeedbackForm(event, position) {
+		event = eventTargetFixUp(event);
 		var $fm_content = $(event.target).closest(".feedback_content"),
 			fm_options = getFmOptions(event, position);
 		if ((fm_options.name_required === true && $fm_content.find(".feedback_name").val() === "") ||
@@ -486,7 +517,7 @@ var fm = (function ($) {
 
 				+		 radio_button_list_html
 
-				+		'<li>	<button type="submit" onclick="fm.sendFeedback(event,\'' + fm_options.position + '\');" class="feedback_submit ' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
+				+		'<li>	<button type="submit" onclick="fm.stopPropagation(event);fm.sendFeedback(event,\'' + fm_options.position + '\');" class="feedback_submit ' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
 				+	'</ul>'
 				+	'</form>';
 		}
@@ -494,7 +525,7 @@ var fm = (function ($) {
 			iframe_html = '<iframe name="feedback_me_frame" class="feedback_me_frame" frameborder="0" src="' + fm_options.iframe_url + '"></iframe>';
 		}
 
-		$('body').append('<div onclick="fm.stopPropagation(event);fm.triggerAction(event);" class="feedback_trigger feedback_trigger_closed ' + fm_options.position + jQueryUIClasses1 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
+		$('body').append('<div onclick="fm.stopPropagation(event);fm.triggerAction(event,\'' + fm_options.position + '\');" class="feedback_trigger feedback_trigger_closed ' + fm_options.position + jQueryUIClasses1 + fm_class + jquery_class + bootstrap_class + bootstrap_hero_unit + '">'
 				+	'<span class="feedback_trigger_text">' + fm_options.trigger_label
 				+	'</span></div>');
 
@@ -555,6 +586,7 @@ var fm = (function ($) {
 		}
 	}
 	function clearInputs(event) {
+		event = eventTargetFixUp(event);
 		var $fm_content = $(event.target).closest(".feedback_content");
 
 		$fm_content.find(".feedback_name").val("");
@@ -571,6 +603,7 @@ var fm = (function ($) {
 			$fm_content,
 			fm_options = getFmOptions(event, position);
 
+		event = eventTargetFixUp(event);
 		if (checkValid === false || checkPattern === false) {
 			stopPropagation(event);
 			return;
