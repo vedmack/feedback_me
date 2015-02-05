@@ -5,7 +5,7 @@
 * jQuery Feedback Me Plugin
 * 
 * File:        jquery.feedback_me.js
-* Version:     0.5.8.beta.1
+ * Version:     0.5.8.beta.2
 * 
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me 
@@ -632,6 +632,9 @@ var fm = (function ($) {
 			url: fm_options.feedback_url,
 			data: dataArray,
 			beforeSend: function (xhr) {
+				if ($.ajaxSettings.hasOwnProperty('beforeSend')) {
+					$.ajaxSettings.beforeSend();
+				}
 				if (fm_options.delayed_close === false) {
 					slideBack(fm_options, $fm_trigger, $fm_content);
 				}

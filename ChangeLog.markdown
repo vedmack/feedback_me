@@ -1,5 +1,10 @@
 # jQuery Feedback Me Plugin ChangeLog
 
+## 0.5.8 (still in progress)
+
+* Added custom template for the delayed_options, custom_html_success and custom_html_fail are part of the delayed_options, https://github.com/vedmack/feedback_me/issues/33
+* Added extend for the global ajax beforeSend, https://github.com/vedmack/feedback_me/issues/34
+
 
 ## 0.5.7
 
