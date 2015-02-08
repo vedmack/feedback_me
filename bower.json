@@ -2,7 +2,7 @@
 	"author": "Daniel Reznick",
 	"name": "feedback_me",
 	"description": "This jQuery plug-in allows user to easily add an animatable UI widget with a feedback form which slides from the side of the screen.",
-	"version": "0.5.7",
+	"version": "0.5.8",
 	"homepage": "http://feedback-me.appspot.com/",
 	"repository": {
 		"type": "git",

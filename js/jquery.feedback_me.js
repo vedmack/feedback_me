@@ -5,7 +5,7 @@
 * jQuery Feedback Me Plugin
 * 
 * File:        jquery.feedback_me.js
-* Version:     0.5.7
+ * Version:     0.5.8
 * 
 * Author:      Daniel Reznick
 * Info:        https://github.com/vedmack/feedback_me 
@@ -207,7 +207,9 @@
 										send_fail : "Sending failed.", //This text will appear on the fail dialog
 										send_success : "Feedack sent.", //This text will appear on the success dialog
 										fail_color : undefined,
-										success_color : undefined
+										success_color : undefined,
+										custom_html_success: undefined, //Allow to customize delayed success feedback with custom html code, note that the html will be wrapped with div with the following classes feedback-delayed-custom-dlg success
+										custom_html_fail: undefined, //Allow to customize delayed fail feedback with custom html code, note that the html will be wrapped with div with the following classes feedback-delayed-custom-dlg fail
 									}
 				Description:		Allow to customize the feedback dialog upon feedback sending
 *
@@ -630,6 +632,9 @@ var fm = (function ($) {
 			url: fm_options.feedback_url,
 			data: dataArray,
 			beforeSend: function (xhr) {
+				if ($.ajaxSettings.hasOwnProperty('beforeSend')) {
+					$.ajaxSettings.beforeSend();
+				}
 				if (fm_options.delayed_close === false) {
 					slideBack(fm_options, $fm_trigger, $fm_content);
 				}
@@ -638,26 +643,39 @@ var fm = (function ($) {
 				var st = "";
 				fm.clearInputs(event);
 				if (fm_options.delayed_close === true) {
-					if (fm_options.delayed_options.success_color !== undefined) {
-						st = ' style="background-color:' + fm_options.delayed_options.success_color + '" ';
+					if (fm_options.delayed_options.custom_html_success === undefined) {
+						if (fm_options.delayed_options.success_color !== undefined) {
+							st = ' style="background-color:' + fm_options.delayed_options.success_color + '" ';
+						}
+						$fm_content.find('.feedback_submit').text(fm_options.submit_label);
+						slideBack(fm_options, $fm_trigger, $fm_content);
+						$("body").append('<div ' + st + ' class="feedback-delayed-dlg success" onclick="fm.stopPropagation(event);"><span class="feedback-dlg-close" onclick="fm.closeFeedbackDelayedDlg();">X</span><span class="feedback-sucess-message">' +
+							'<span class="feedback-sucess-fail-message-inner"><span>' + fm_options.delayed_options.send_success + '</span></span></span></div>');
+						setTimeout(function () {$(".feedback-delayed-dlg").fadeOut(function () { $(this).remove(); }); }, fm_options.delayed_options.delay_success_milliseconds);
+					} else {
+						$fm_content.find('.feedback_submit').text(fm_options.submit_label);
+						slideBack(fm_options, $fm_trigger, $fm_content);
+						$("body").append('<div class="feedback-delayed-custom-dlg success" onclick="fm.stopPropagation(event);">' + fm_options.delayed_options.custom_html_success + '</div>');
+						setTimeout(function () {$(".feedback-delayed-custom-dlg").fadeOut(function () { $(this).remove(); }); }, fm_options.delayed_options.delay_success_milliseconds);
 					}
-					$fm_content.find('.feedback_submit').text(fm_options.submit_label);
-					slideBack(fm_options, $fm_trigger, $fm_content);
-					$("body").append('<div ' + st + ' class="feedback-delayed-dlg success" onclick="fm.stopPropagation(event);"><span class="feedback-dlg-close" onclick="fm.closeFeedbackDelayedDlg();">X</span><span class="feedback-sucess-message">' +
-						'<span class="feedback-sucess-fail-message-inner"><span>' + fm_options.delayed_options.send_success + '</span></span></span></div>');
-					setTimeout(function () {$(".feedback-delayed-dlg").fadeOut(function () { $(this).remove(); }); }, fm_options.delayed_options.delay_success_milliseconds);
 				}
             },
 			error: function (ob, errStr) {
 				var st = "";
 				if (fm_options.delayed_close === true) {
-					if (fm_options.delayed_options.fail_color !== undefined) {
-						st = ' style="background-color:' + fm_options.delayed_options.fail_color + '" ';
+					if (fm_options.delayed_options.custom_html_fail === undefined) {
+						if (fm_options.delayed_options.fail_color !== undefined) {
+							st = ' style="background-color:' + fm_options.delayed_options.fail_color + '" ';
+						}
+						$fm_content.find('.feedback_submit').text(fm_options.submit_label);
+						$("body").append('<div ' + st + ' class="feedback-delayed-dlg fail" onclick="fm.stopPropagation(event);"><span class="feedback-dlg-close" onclick="fm.closeFeedbackDelayedDlg();">X</span><span class="feedback-fail-message">' +
+							'<span class="feedback-sucess-fail-message-inner"><span>' + fm_options.delayed_options.send_fail + '</span></span></span></div>');
+						setTimeout(function () {$(".feedback-delayed-dlg").fadeOut(function () { $(this).remove(); }); }, fm_options.delayed_options.delay_fail_milliseconds);
+					} else {
+						$fm_content.find('.feedback_submit').text(fm_options.submit_label);
+						$("body").append('<div class="feedback-delayed-custom-dlg fail" onclick="fm.stopPropagation(event);">' + fm_options.delayed_options.custom_html_fail + '</div>');
+						setTimeout(function () {$(".feedback-delayed-custom-dlg").fadeOut(function () { $(this).remove(); }); }, fm_options.delayed_options.delay_fail_milliseconds);
 					}
-					$fm_content.find('.feedback_submit').text(fm_options.submit_label);
-					$("body").append('<div ' + st + ' class="feedback-delayed-dlg fail" onclick="fm.stopPropagation(event);"><span class="feedback-dlg-close" onclick="fm.closeFeedbackDelayedDlg();">X</span><span class="feedback-fail-message">' +
-						'<span class="feedback-sucess-fail-message-inner"><span>' + fm_options.delayed_options.send_fail + '</span></span></span></div>');
-					setTimeout(function () {$(".feedback-delayed-dlg").fadeOut(function () { $(this).remove(); }); }, fm_options.delayed_options.delay_fail_milliseconds);
 				} else {
 					console.log("Failed to send feedback (please double check your feedback_url parameter)");
 				}
@@ -731,7 +749,9 @@ var fm = (function ($) {
 				send_fail : "Sending failed.",
 				send_success : "Feedack sent.",
 				fail_color : undefined,
-				success_color : undefined
+				success_color : undefined,
+				custom_html_success: undefined,
+				custom_html_fail: undefined
 			}
 		},
 			tmp_options,
