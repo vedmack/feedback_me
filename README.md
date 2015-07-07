@@ -52,7 +52,7 @@ Examples:
 
 [Custom Html Example](http://feedback-me.appspot.com/example_custom_html.html)
 
-[Multiple Feedbacks Example](http://http://feedback-me.appspot.com/example_clean_multiple.html)
+[Multiple Feedbacks Example](http://feedback-me.appspot.com/example_clean_multiple.html)
 
 Usage:
 =====
