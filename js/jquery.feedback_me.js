@@ -3,26 +3,26 @@
 
 /*!
 * jQuery Feedback Me Plugin
-* 
+*
 * File:        jquery.feedback_me.js
  * Version:     0.5.8
-* 
+*
 * Author:      Daniel Reznick
-* Info:        https://github.com/vedmack/feedback_me 
+* Info:        https://github.com/vedmack/feedback_me
 * Contact:     vedmack@gmail.com
 * Twitter:     @danielreznick
-* Q&A:         https://groups.google.com/forum/#!forum/daniels_code	
-* 
+* Q&A:         https://groups.google.com/forum/#!forum/daniels_code
+*
 * Copyright (c) 2014 Daniel Reznick, all rights reserved. released under the MIT license
-* 
-* This source file is distributed in the hope that it will be useful, but 
-* WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+*
+* This source file is distributed in the hope that it will be useful, but
+* WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
 * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
 */
 /*
 * Parameters:
 *
-*					
+*
 * -------------
 
 * feedback_url
@@ -30,11 +30,11 @@
 				Type:				String
 				Description:		URL of your servlet/php etc ('name', 'message' and 'email' parameters will be send to your servlet/php etc...)
 
-* position				
+* position
 				Required:			false
 				Type:				String
 				Default value:		left-top
-				Possible values:	left-top / left-bottom / right-top / right-bottom 
+				Possible values:	left-top / left-bottom / right-top / right-bottom
 				Description:		Set the position where the feedback widget will be located
 * jQueryUI
 				Required:			false
@@ -59,7 +59,7 @@
 				Type:				boolean
 				Default value:		false
 				Description:		Tell the plugin to set of 5 radio buttons
-				
+
 * name_label
 				Required:			false
 				Type:				String
@@ -89,7 +89,7 @@
 				Type:				String
 				Default value:		"How would you rate my site?"
 				Description:		Label that will appear above the list of radio button
-				
+
 * submit_label
 				Required:			false
 				Type:				String
@@ -126,7 +126,7 @@
 				Default value:		""
 				Description:		Watermark for message input
 
-* name_pattern				
+* name_pattern
 				Required:			false
 				Type:				String
 				Default value:		""
@@ -162,35 +162,35 @@
 				Default value:		false
 				Description:		Add an asterisk to the label of the required inputs
 
-* close_on_click_outside				
+* close_on_click_outside
 				Required:			false
 				Type:				boolean
 				Default value:		true
 				Description:		Will cause the feedback dialog to be closed on clicking anywhere outside the dialog
-				
-* custom_params				
+
+* custom_params
 				Required:			false
 				Type:				object
 				Default value:		{}
 				Description:		Use it if you want to send additional data to the server (can be used for sending: csrf token / logged in user_name / etc`)
-* iframe_url				
+* iframe_url
 				Required:			false
 				Type:				String
 				Default value:		undefined
 				Description:		Allows you to use any html file that you want, it will be placed inside feedback_me widget, (note that in order to close the feedback_me widget
 									just call the following command: parent.fm.triggerAction(event, "left-top"); don't forget to pass the "event" from you onclick call to the triggerAction function
 									and also the position of your feedback widget left-top / left-bottom / right-top / right-bottom)
-* show_form				
+* show_form
 				Required:			false
 				Type:				boolean
 				Default value:		true
 				Description:		Allows you to hide the form in the widget (and only show HTML code or iframe)
-* custom_html				
+* custom_html
 				Required:			false
 				Type:				String
 				Default value:		""
 				Description:		Allows you to use any inline html code that you want, it will be placed inside feedback_me widget
-* delayed_close 
+* delayed_close
 				Required:			false
 				Type:				boolean
 				Default value:		true
@@ -205,7 +205,7 @@
 										delay_fail_milliseconds : 2000,
 										sending : "Sending...", //This text will appear on the "send" button while sending
 										send_fail : "Sending failed.", //This text will appear on the fail dialog
-										send_success : "Feedack sent.", //This text will appear on the success dialog
+										send_success : "Feedback sent.", //This text will appear on the success dialog
 										fail_color : undefined,
 										success_color : undefined,
 										custom_html_success: undefined, //Allow to customize delayed success feedback with custom html code, note that the html will be wrapped with div with the following classes feedback-delayed-custom-dlg success
@@ -747,7 +747,7 @@ var fm = (function ($) {
 				delay_fail_milliseconds : 2000,
 				sending : "Sending...",
 				send_fail : "Sending failed.",
-				send_success : "Feedack sent.",
+				send_success : "Feedback sent.",
 				fail_color : undefined,
 				success_color : undefined,
 				custom_html_success: undefined,
