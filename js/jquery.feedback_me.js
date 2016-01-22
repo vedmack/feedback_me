@@ -413,7 +413,7 @@ var fm = (function ($) {
 		var jqVersion = $().jquery.split(".");
 		jqVersion[0] = +jqVersion[0];
 		jqVersion[1] = +jqVersion[1];
-		if (jqVersion[0] >= 1 && jqVersion[1] >= 7) {
+		if (jqVersion[0] > 1 || (jqVersion[0] === 1 && jqVersion[1] >= 7)) {
 			$(document).on("click", document, function (event) {
 				closeFeedback(event);
 			});
