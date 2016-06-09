@@ -456,7 +456,7 @@ var fm = (function ($) {
 		if (fm_options.bootstrap === true) {
 			bootstrap_class = " fm_bootstrap ";
 			bootstrap_btn = " btn btn-primary ";
-			bootstrap_hero_unit = " hero-unit ";
+			bootstrap_hero_unit = " hero-unit jumbotron ";
 
 			fm_class = "";
 			jquery_class = "";
