@@ -631,9 +631,9 @@ var fm = (function ($) {
 			type: 'POST',
 			url: fm_options.feedback_url,
 			data: dataArray,
-			beforeSend: function (xhr) {
+			beforeSend: function (xhr, settings) {
 				if ($.ajaxSettings.hasOwnProperty('beforeSend')) {
-					$.ajaxSettings.beforeSend();
+					$.ajaxSettings.beforeSend(xhr, settings);
 				}
 				if (fm_options.delayed_close === false) {
 					slideBack(fm_options, $fm_trigger, $fm_content);
