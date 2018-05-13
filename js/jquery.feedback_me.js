@@ -649,8 +649,8 @@ var fm = (function ($) {
 						}
 						$fm_content.find('.feedback_submit').text(fm_options.submit_label);
 						slideBack(fm_options, $fm_trigger, $fm_content);
-						$("body").append('<div ' + st + ' class="feedback-delayed-dlg success" onclick="fm.stopPropagation(event);"><span class="feedback-dlg-close" onclick="fm.closeFeedbackDelayedDlg();">X</span><span class="feedback-sucess-message">' +
-							'<span class="feedback-sucess-fail-message-inner"><span>' + fm_options.delayed_options.send_success + '</span></span></span></div>');
+						$("body").append('<div ' + st + ' class="feedback-delayed-dlg success" onclick="fm.stopPropagation(event);"><span class="feedback-dlg-close" onclick="fm.closeFeedbackDelayedDlg();">X</span><span class="feedback-success-message">' +
+							'<span class="feedback-success-fail-message-inner"><span>' + fm_options.delayed_options.send_success + '</span></span></span></div>');
 						setTimeout(function () {$(".feedback-delayed-dlg").fadeOut(function () { $(this).remove(); }); }, fm_options.delayed_options.delay_success_milliseconds);
 					} else {
 						$fm_content.find('.feedback_submit').text(fm_options.submit_label);
@@ -669,7 +669,7 @@ var fm = (function ($) {
 						}
 						$fm_content.find('.feedback_submit').text(fm_options.submit_label);
 						$("body").append('<div ' + st + ' class="feedback-delayed-dlg fail" onclick="fm.stopPropagation(event);"><span class="feedback-dlg-close" onclick="fm.closeFeedbackDelayedDlg();">X</span><span class="feedback-fail-message">' +
-							'<span class="feedback-sucess-fail-message-inner"><span>' + fm_options.delayed_options.send_fail + '</span></span></span></div>');
+							'<span class="feedback-success-fail-message-inner"><span>' + fm_options.delayed_options.send_fail + '</span></span></span></div>');
 						setTimeout(function () {$(".feedback-delayed-dlg").fadeOut(function () { $(this).remove(); }); }, fm_options.delayed_options.delay_fail_milliseconds);
 					} else {
 						$fm_content.find('.feedback_submit').text(fm_options.submit_label);

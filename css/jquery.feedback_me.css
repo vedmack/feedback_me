@@ -511,7 +511,7 @@
 	cursor: pointer;
 }
 
-.feedback-sucess-fail-message-inner {
+.feedback-success-fail-message-inner {
 	position: fixed;
 	width: 200px;
 	height: 50px;
@@ -528,13 +528,13 @@
 	line-height:50px;
 }
 
-.feedback-sucess-fail-message-inner > span{
+.feedback-success-fail-message-inner > span{
 	display: inline-block;
     vertical-align: middle;
     line-height: 1em;
 }
 
-.feedback-sucess-message, .feedback-fail-message {
+.feedback-success-message, .feedback-fail-message {
 	display: inline-block;
 	width: 200px;
 	height: 50px;
